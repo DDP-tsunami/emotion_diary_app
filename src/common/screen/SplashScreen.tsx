@@ -1,11 +1,9 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 
-type Props = NativeStackScreenProps<
-  {Splash: undefined; Main: undefined},
-  'Splash'
->;
+type Props = NativeStackScreenProps<rootStackParams, 'Splash'>;
 
 const SplashScreen = ({navigation}: Props) => {
   useEffect(() => {
