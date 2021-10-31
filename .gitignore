@@ -58,4 +58,5 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-google-services.jsong
+
+google-services.json
