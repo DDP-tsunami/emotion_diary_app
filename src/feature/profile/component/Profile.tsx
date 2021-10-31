@@ -1,4 +1,6 @@
+import Clipboard from '@react-native-clipboard/clipboard';
 import React from 'react';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
 type Props = {
@@ -44,11 +46,17 @@ const Code = styled.Text`
 `;
 
 const Profile = ({name, photoUrl, code}: Props) => {
+  const onCopy = () => {
+    Clipboard.setString(code);
+  };
+
   return (
     <Container>
       <ProfilePhoto source={{uri: photoUrl}} />
       <Name>{name}</Name>
-      <Code>{`code : ${code}`}</Code>
+      <TouchableOpacity onPress={onCopy}>
+        <Code>{`code : ${code}`}</Code>
+      </TouchableOpacity>
     </Container>
   );
 };
