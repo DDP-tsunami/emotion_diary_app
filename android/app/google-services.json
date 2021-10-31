@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "205024196940",
+    "project_id": "emotion-diary-7b533",
+    "storage_bucket": "emotion-diary-7b533.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205024196940:android:e5f3e7ff7bcef0203a37e9",
+        "android_client_info": {
+          "package_name": "com.emotion_diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205024196940-f3d326h5bgvi9qjg18tgv0rgpoolbdt0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emotion_diary",
+            "certificate_hash": "3ebb0363aac8117aff80aee12bd49310e7493e30"
+          }
+        },
+        {
+          "client_id": "205024196940-ha8ku53nr487c66k5h5dnrffdpgq7tcf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzAgDEj5stnQO5Nn-W5266pI3fL836w9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205024196940-ha8ku53nr487c66k5h5dnrffdpgq7tcf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
