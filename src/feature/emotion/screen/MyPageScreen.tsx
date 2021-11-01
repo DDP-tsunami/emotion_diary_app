@@ -19,7 +19,7 @@ const MyPageScreen = ({}: Props) => {
         code={'123456'}
         email={'qht6@naver.com'}
         photoUrl={
-          'https://firebasestorage.googleapis.com/v0/b/emotion-diary-7b533.appspot.com/o/profile_photo%2FIMG_5846.JPG?alt=media&token=f4db2996-342d-46cf-ae1c-f560dbf31005'
+          'https://firebasestorage.googleapis.com/v0/b/emotion-diary-7b533.appspot.com/o/profile_photo%2F%EC%B8%84.jpg?alt=media&token=e3e08c51-0a23-4999-96fe-bb45bc641bcd'
         }
       />
     </Container>
