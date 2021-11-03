@@ -1,7 +1,7 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import FeedScreen from '@src/feature/feed/screen/FeedScreen';
+import FeedScreen from '@src/feature/emotion/screen/FeedScreen';
 import MyPageScreen from '@src/feature/emotion/screen/MyPageScreen';
 import AddEmotionScreen from '@src/feature/emotion/screen/AddEmotionScreen';
 import AlarmListScreen from '@src/feature/alarm/screen/AlarmListScreen';

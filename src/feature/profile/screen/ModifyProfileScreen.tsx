@@ -1,4 +1,3 @@
-import {firebase} from '@react-native-firebase/storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import LabelInput from '@src/common/component/input/LabelInput';
 import {rootStackParams} from '@src/common/utils/common.types';

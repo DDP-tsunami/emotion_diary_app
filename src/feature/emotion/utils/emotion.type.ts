@@ -19,6 +19,10 @@ export interface Emotion {
   emotion: EmotionType;
   emotionScope: boolean;
   date: string;
+  member_id: string;
+  profilePhotoUrl: string | null;
+  name: string;
+  nickname: string;
   detail?: string;
   detailScope?: boolean;
 }

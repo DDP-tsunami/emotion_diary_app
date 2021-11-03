@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const defaultImage = require('@src/common/image/default_profile.png');
 interface Props {
-  photoUrl?: string;
+  photoUrl?: string | null;
   size?: string;
 }
 
