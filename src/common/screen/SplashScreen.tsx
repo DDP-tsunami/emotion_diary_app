@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useEffect} from 'react';
@@ -7,10 +8,17 @@ import {Text, View} from 'react-native';
 type Props = NativeStackScreenProps<rootStackParams, 'Splash'>;
 
 const SplashScreen = ({navigation}: Props) => {
+  const onSplash = () => {
+    AsyncStorage.getItem('token').then(token => {
+      if (token) {
+        navigation.push('Main');
+      } else {
+        navigation.push('Login');
+      }
+    });
+  };
   useEffect(() => {
-    setTimeout(() => {
-      navigation.push('Login');
-    }, 3000);
+    setTimeout(onSplash, 3000);
   }, []);
 
   return (

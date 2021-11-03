@@ -32,7 +32,9 @@ const LoginScreen = ({navigation}: Props) => {
       }
       AsyncStorage.setItem('token', token);
       navigation.push('Main');
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   const onSignUp = () => {
     navigation.push('SignUp');

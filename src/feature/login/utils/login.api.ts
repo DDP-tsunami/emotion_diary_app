@@ -1,6 +1,5 @@
+import {baseURL} from '@src/common/function/makeRequest';
 import axios from 'axios';
-
-const baseURL = 'http://192.168.0.19:8080/api';
 
 export const loginAPI = async (
   userId: string,
@@ -17,6 +16,7 @@ export const loginAPI = async (
     console.log('data : ', data.token);
     return data.token;
   } catch (error) {
+    console.log(error);
     return null;
   }
 };
