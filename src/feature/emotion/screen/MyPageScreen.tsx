@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {tabViewParams} from '@src/feature/tabView/utils/tabview.type';
 import Profile from '@src/feature/profile/component/Profile';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<tabViewParams, 'MyPage'>;
 
@@ -12,6 +13,11 @@ const Container = styled.View`
 `;
 
 const MyPageScreen = ({}: Props) => {
+  useEffect(() => {
+    AsyncStorage.getItem('token').then(token => {
+      console.log(token);
+    });
+  }, []);
   return (
     <Container>
       <Profile

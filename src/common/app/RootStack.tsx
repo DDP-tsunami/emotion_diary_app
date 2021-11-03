@@ -3,14 +3,20 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from '@src/common/screen/SplashScreen';
 import TabScreen from '@src/feature/tabView/screen/TabScreen';
+import LoginScreen from '@src/feature/login/screen/LoginScreen';
+import SignUpScreen from '@src/feature/login/screen/SignUpScreen';
 
 const Stack = createNativeStackNavigator();
+
+const navigaterConfigureation = {headerShown: false};
 
 const RootStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={navigaterConfigureation}>
         <Stack.Screen name="Splash" component={SplashScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabScreen} />
       </Stack.Navigator>
     </NavigationContainer>
