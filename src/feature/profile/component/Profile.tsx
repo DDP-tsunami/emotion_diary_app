@@ -6,9 +6,9 @@ import ProfilePhoto from './ProfilePhoto';
 
 type Props = {
   name: string;
-  photoUrl: string;
   code: string;
   email: string;
+  photoUrl?: string;
 };
 
 const Container = styled.View`
@@ -26,19 +26,21 @@ const Name = styled.Text`
   color: #000;
 `;
 const Code = styled.Text`
-  padding: 2px 4px;
+  padding: 4px 8px 6px 8px;
 
   background-color: #cdcdcd;
   border: none;
   border-radius: 4px;
 
+  text-align: center;
+
   font-size: 12px;
   font-weight: normal;
   color: #080808;
 `;
-const Profile = ({name, photoUrl, code}: Props) => {
+const Profile = ({name, photoUrl, email}: Props) => {
   const onCopy = () => {
-    Clipboard.setString(code);
+    Clipboard.setString(email);
   };
 
   return (
@@ -46,7 +48,7 @@ const Profile = ({name, photoUrl, code}: Props) => {
       <ProfilePhoto photoUrl={photoUrl} />
       <Name>{name}</Name>
       <TouchableOpacity onPress={onCopy}>
-        <Code>{`code : ${code}`}</Code>
+        <Code>{email}</Code>
       </TouchableOpacity>
     </Container>
   );

@@ -1,6 +1,9 @@
 export type User = {
   id: string;
-  profilePhoto: string;
+  userId: string;
+  nickname: string;
+  email: string;
   name: string;
-  code: string;
+  password: string;
+  profilePhotoUrl: string | null;
 };

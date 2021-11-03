@@ -5,6 +5,7 @@ import SplashScreen from '@src/common/screen/SplashScreen';
 import TabScreen from '@src/feature/tabView/screen/TabScreen';
 import LoginScreen from '@src/feature/login/screen/LoginScreen';
 import SignUpScreen from '@src/feature/login/screen/SignUpScreen';
+import ModifyProfileScreen from '@src/feature/profile/screen/ModifyProfileScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const RootStack = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Main" component={TabScreen} />
+        <Stack.Screen name="Profile" component={ModifyProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

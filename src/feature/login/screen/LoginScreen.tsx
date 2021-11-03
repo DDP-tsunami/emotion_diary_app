@@ -30,7 +30,6 @@ const LoginScreen = ({navigation}: Props) => {
       if (token === null) {
         throw Error('Login Error');
       }
-
       AsyncStorage.setItem('token', token);
       navigation.push('Main');
     } catch (error) {}

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+const defaultImage = require('@src/common/image/default_profile.png');
 interface Props {
-  photoUrl: string;
+  photoUrl?: string;
   size?: string;
 }
 
@@ -20,7 +21,9 @@ const Photo = styled.Image<StyleProps>`
 `;
 
 const ProfilePhoto = ({photoUrl, size}: Props) => {
-  return <Photo source={{uri: photoUrl}} size={size} />;
+  return (
+    <Photo source={photoUrl ? {uri: photoUrl} : defaultImage} size={size} />
+  );
 };
 
 export default ProfilePhoto;

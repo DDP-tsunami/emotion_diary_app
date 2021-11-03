@@ -1,35 +1,45 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {tabViewParams} from '@src/feature/tabView/utils/tabview.type';
 import Profile from '@src/feature/profile/component/Profile';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import BasicButton from '@src/common/component/button/BasicButton';
+import {rootStackParams} from '@src/common/utils/common.types';
+import {User} from '@src/feature/profile/utils/profile.type';
+import {getProfileData} from '@src/feature/profile/utils/profile.api';
 
-type Props = NativeStackScreenProps<tabViewParams, 'MyPage'>;
+type Props = NativeStackScreenProps<rootStackParams, 'Main'>;
 
 const Container = styled.View`
   padding: 20px 0;
 `;
 
-const MyPageScreen = ({}: Props) => {
+const MyPageScreen = ({navigation}: Props) => {
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    AsyncStorage.getItem('token').then(token => {
-      console.log(token);
+    getProfileData().then(profile => {
+      setUser(profile);
     });
   }, []);
-  return (
+  const onUpdate = () => {
+    if (user) {
+      navigation.push('Profile', user);
+    }
+  };
+  return user ? (
     <Container>
       <Profile
-        name={'이준희'}
-        code={'123456'}
+        name={user.nickname}
+        code={user.email}
         email={'qht6@naver.com'}
-        photoUrl={
-          'https://firebasestorage.googleapis.com/v0/b/emotion-diary-7b533.appspot.com/o/profile_photo%2F%EC%B8%84.jpg?alt=media&token=e3e08c51-0a23-4999-96fe-bb45bc641bcd'
-        }
+      />
+      <BasicButton
+        title={'프로필 수정하기'}
+        onClick={onUpdate}
+        disabled={false}
       />
     </Container>
-  );
+  ) : null;
 };
 
 export default MyPageScreen;
