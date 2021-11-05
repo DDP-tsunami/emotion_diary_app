@@ -1,8 +1,10 @@
-import React from 'react';
+import {User} from '@src/feature/profile/utils/profile.type';
+import React, {useEffect, useState} from 'react';
 import {ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import FriendListItem from '../component/FriendListItem';
-import {dummyFriendList} from '../data/dummyFriendData';
+import FriendSearch from '../component/FriendSearch';
+import {getFriendList} from '../utils/friend.api';
 
 const Title = styled.Text`
   width: 100%;
@@ -15,11 +17,20 @@ const Title = styled.Text`
 `;
 
 const FriendListScreen = () => {
+  const [friends, setFriends] = useState<User[]>([]);
+
+  useEffect(() => {
+    getFriendList().then(data => {
+      setFriends(data.friends);
+    });
+  }, []);
+
   return (
     <ScrollView>
+      <FriendSearch />
       <Title>친구 리스트</Title>
-      {dummyFriendList.map(user => (
-        <FriendListItem key={user.id} friend={user} />
+      {friends.map(friend => (
+        <FriendListItem key={friend.id} friend={friend} buttonText={'삭제'} />
       ))}
     </ScrollView>
   );

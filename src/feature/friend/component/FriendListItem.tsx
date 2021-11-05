@@ -6,6 +6,8 @@ import ProfilePhoto from '@src/feature/profile/component/ProfilePhoto';
 
 interface Props {
   friend: User;
+  buttonText: string;
+  onClick?: () => void;
 }
 
 const Container = styled.View`
@@ -44,14 +46,14 @@ const Button = styled.Button`
   background-color: #cfcfcf;
 `;
 
-const FriendListItem = ({friend}: Props) => {
+const FriendListItem = ({friend, buttonText, onClick}: Props) => {
   return (
     <Container>
       <Profile>
-        <ProfilePhoto photoUrl={friend.profilePhoto} size={'40px'} />
+        <ProfilePhoto photoUrl={friend.profilePhotoUrl} size={'40px'} />
         <Name>{friend.name}</Name>
       </Profile>
-      <Button title={'삭제'} />
+      <Button title={buttonText} onPress={onClick} />
     </Container>
   );
 };

@@ -23,7 +23,6 @@ export interface Emotion {
   profilePhotoUrl: string | null;
   name: string;
   nickname: string;
-  detail?: string;
   detailScope?: boolean;
 }
 

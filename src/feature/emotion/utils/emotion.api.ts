@@ -2,7 +2,7 @@ import makeRequest from '@src/common/function/makeRequest';
 import {EmotionType, FeedEmotion} from './emotion.type';
 
 type getFeedEmotionResponseType = {
-  memoList: FeedEmotion[];
+  lines: FeedEmotion[];
   totalCount: number;
 };
 

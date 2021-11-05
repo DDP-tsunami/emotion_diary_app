@@ -31,7 +31,7 @@ const Container = styled.View<StyleProps>`
 const AlarmItem = ({alarm}: Props) => {
   return (
     <Container status={alarm.status}>
-      <ProfilePhoto photoUrl={alarm.sender.profilePhoto} size={'80px'} />
+      <ProfilePhoto photoUrl={alarm.sender.profilePhotoUrl} size={'80px'} />
       <AlarmText type={alarm.type} userName={alarm.sender.name} />
     </Container>
   );

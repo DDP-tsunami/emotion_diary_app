@@ -19,7 +19,7 @@ const FeedScreen = () => {
   const [totalCount, setTotalCount] = useState<number>(0);
 
   useEffect(() => {
-    getFeedEmotions(0).then(({memoList: e, totalCount: t}) => {
+    getFeedEmotions(0).then(({lines: e, totalCount: t}) => {
       console.log('Total Count : ', t);
       console.log('Emotions : ', e);
       setEmotions([...e]);
@@ -30,7 +30,7 @@ const FeedScreen = () => {
   const onMoreFeed = async () => {
     const data = await getFeedEmotions(emotions.length);
     console.log(data);
-    setEmotions([...emotions, ...data.memoList]);
+    setEmotions([...emotions, ...data.lines]);
     setTotalCount(data.totalCount);
   };
 

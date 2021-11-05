@@ -3,9 +3,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import styled from 'styled-components/native';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Splash'>;
+
+const Container = styled.View`
+  width: 100%;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #5d5dfe;
+`;
+
+const Text = styled.Text`
+  color: #fff;
+`;
 
 const SplashScreen = ({navigation}: Props) => {
   const onSplash = () => {
@@ -22,9 +37,9 @@ const SplashScreen = ({navigation}: Props) => {
   }, []);
 
   return (
-    <View>
+    <Container>
       <Text>Splash 화면 입니다.</Text>
-    </View>
+    </Container>
   );
 };
 

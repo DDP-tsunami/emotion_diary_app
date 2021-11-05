@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView} from 'react-native';
 import AlarmItem from '../component/AlarmItem';
-import {dummyAlarmEntites, dummyAlarmIdList} from '../data/dummyAlarmData';
+import {getAlarmListAPI} from '../utils/alarm.api';
+import {Alarm} from '../utils/alarm.type';
 
 const AlarmListScreen = () => {
+  const [alarmList, setAlarmList] = useState<Alarm[]>([]);
+  useState(() => {
+    getAlarmListAPI().then(result => {
+      console.log(result);
+      setAlarmList(result.notices);
+    });
+  }, []);
   return (
     <ScrollView>
-      {dummyAlarmIdList.map(id => (
-        <AlarmItem key={id} alarm={dummyAlarmEntites[id]} />
+      {alarmList.map(alarm => (
+        <AlarmItem key={alarm.id} alarm={alarm} />
       ))}
     </ScrollView>
   );
