@@ -4,18 +4,19 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
+import {color} from '../utils/common.style';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Splash'>;
 
 const Container = styled.View`
   width: 100%;
-  height: 400px;
 
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: #5d5dfe;
+  background-color: ${color.main};
 `;
 
 const Text = styled.Text`
@@ -26,9 +27,9 @@ const SplashScreen = ({navigation}: Props) => {
   const onSplash = () => {
     AsyncStorage.getItem('token').then(token => {
       if (token) {
-        navigation.push('Main');
+        navigation.push('Profile');
       } else {
-        navigation.push('Login');
+        navigation.push('Profile');
       }
     });
   };

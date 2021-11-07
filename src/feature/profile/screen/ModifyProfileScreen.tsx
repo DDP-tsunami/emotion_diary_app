@@ -1,10 +1,15 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import styled from 'styled-components/native';
+import BasicButton from '@src/common/component/button/BasicButton';
 import LabelInput from '@src/common/component/input/LabelInput';
-import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import styled from 'styled-components/native';
 import ProfilePhoto from '../component/ProfilePhoto';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import {rootStackParams} from '@src/common/utils/common.types';
+import {getFileFromGallery} from '@src/common/function/getPhoto';
+import {firebase} from '@react-native-firebase/storage';
+import {updateProfileAPI} from '../utils/profile.api';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Profile'>;
 
@@ -18,14 +23,41 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
   );
   const [newNickName, setNickName] = useState<string>(nickname);
 
-  const onImageUpload = async () => {};
+  const onImageUpload = async () => {
+    try {
+      const file = await getFileFromGallery();
+      if (file) {
+        const {uri, type} = file;
+        if (uri) {
+          setProfilePhoto(uri);
+          const filename = `lee.${type}`;
+          const imgRef = firebase.storage().ref(`profile_photo/${filename}`);
+          const task = imgRef.putFile(uri);
+
+          task.on(firebase.storage.TaskEvent.STATE_CHANGED, async snapshot => {
+            if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+              const url = await imgRef.getDownloadURL();
+              setProfilePhoto(url);
+            }
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onSubmit = async () => {
+    await updateProfileAPI(newNickName, profilePhotoUrl);
+    navigation.push('Main');
+  };
 
   return (
     <Container>
-      <TouchableOpacity>
-        <ProfilePhoto />
+      <TouchableOpacity onPress={onImageUpload}>
+        <ProfilePhoto photoUrl={profilePhoto} />
       </TouchableOpacity>
       <LabelInput label={'별명'} value={newNickName} onChange={setNickName} />
+      <BasicButton title={'완료'} onClick={onSubmit} disabled={true} />
     </Container>
   );
 };
