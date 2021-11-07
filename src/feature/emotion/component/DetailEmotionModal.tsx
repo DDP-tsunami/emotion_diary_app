@@ -1,4 +1,5 @@
 import getDate from '@src/common/function/getDate';
+import ReactionButtons from '@src/feature/reaction/template/ReactionButtons';
 import React, {useEffect, useState} from 'react';
 import {StyleProp, View, Text, ViewStyle, TextStyle} from 'react-native';
 import Modal from 'react-native-modal';
@@ -61,6 +62,8 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
     borderWidth: 1,
     borderRadius: 4,
     borderColor: '#cdcdcd',
+
+    marginBottom: 20,
   },
 };
 
@@ -84,6 +87,7 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
           <Text style={style.date}>{getDate(emotion.date)}</Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
+          <ReactionButtons memoId={emotion.id} />
         </View>
       </Modal>
     )
