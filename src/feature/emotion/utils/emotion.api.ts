@@ -30,3 +30,8 @@ export const getFeedEmotions = async (
   console.log('Get Feed Emotion : ', data);
   return data;
 };
+
+export const getEmotionDetailAPI = async (emotionId: number) => {
+  const {detail} = await makeRequest({url: `/emotion/detail/${emotionId}`});
+  return detail;
+};

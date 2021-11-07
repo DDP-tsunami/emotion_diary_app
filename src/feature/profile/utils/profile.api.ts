@@ -12,6 +12,8 @@ export const updateProfileAPI = async (
   photoUrl: string | null,
 ) => {
   try {
+    console.log('Photo URL : ', photoUrl);
+
     await makeRequest({
       url: '/user/profile',
       method: 'put',

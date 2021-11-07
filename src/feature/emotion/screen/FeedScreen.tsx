@@ -1,7 +1,8 @@
 import BasicButton from '@src/common/component/button/BasicButton';
 import React, {useEffect, useState} from 'react';
-import {Text} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
+import DetailEmotionModal from '../component/DetailEmotionModal';
 import FeedEmotionItem from '../component/FeedEmotionItem';
 import {getFeedEmotions} from '../utils/emotion.api';
 import {FeedEmotion} from '../utils/emotion.type';
@@ -17,6 +18,10 @@ const Container = styled.ScrollView`
 const FeedScreen = () => {
   const [emotions, setEmotions] = useState<FeedEmotion[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [selectedEmotion, setSelectedEmotion] = useState<FeedEmotion | null>(
+    null,
+  );
 
   useEffect(() => {
     getFeedEmotions(0).then(({lines: e, totalCount: t}) => {
@@ -38,11 +43,23 @@ const FeedScreen = () => {
     <Container>
       <Text>친구들 감정 모아보기</Text>
       {emotions.map(emotion => (
-        <FeedEmotionItem key={emotion.id} emotion={emotion} />
+        <TouchableOpacity
+          key={emotion.id}
+          onPress={() => {
+            setSelectedEmotion(emotion);
+            setModalVisible(true);
+          }}>
+          <FeedEmotionItem emotion={emotion} />
+        </TouchableOpacity>
       ))}
       {emotions.length < totalCount ? (
         <BasicButton title={'더 보기'} onClick={onMoreFeed} disabled={false} />
       ) : null}
+      <DetailEmotionModal
+        isVisible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        emotion={selectedEmotion}
+      />
     </Container>
   );
 };

@@ -32,6 +32,7 @@ const MyPageScreen = ({navigation}: Props) => {
         name={user.nickname}
         code={user.email}
         email={'qht6@naver.com'}
+        photoUrl={user?.profilePhotoUrl}
       />
       <BasicButton
         title={'프로필 수정하기'}

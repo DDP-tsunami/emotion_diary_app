@@ -47,7 +47,7 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
     }
   };
   const onSubmit = async () => {
-    await updateProfileAPI(newNickName, profilePhotoUrl);
+    await updateProfileAPI(newNickName, profilePhoto);
     navigation.push('Main');
   };
 

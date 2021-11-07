@@ -8,7 +8,7 @@ type Props = {
   name: string;
   code: string;
   email: string;
-  photoUrl?: string;
+  photoUrl?: string | null;
 };
 
 const Container = styled.View`
