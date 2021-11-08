@@ -27,7 +27,7 @@ const SplashScreen = ({navigation}: Props) => {
   const onSplash = () => {
     AsyncStorage.getItem('token').then(token => {
       if (token) {
-        navigation.push('Main');
+        navigation.push('Login');
       } else {
         navigation.push('Login');
       }
