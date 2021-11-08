@@ -2,7 +2,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
-import ProfilePhoto from './ProfilePhoto';
+import ProfilePhoto from '../component/ProfilePhoto';
 
 type Props = {
   name: string;

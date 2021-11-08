@@ -21,6 +21,7 @@
     "axios": "0.24.0",
     "react": "17.0.2",
     "react-native": "0.66.1",
+    "react-native-big-calendar": "2.2.0",
     "react-native-check-box": "2.1.7",
     "react-native-image-picker": "4.1.2",
     "react-native-keyboard-aware-scroll-view": "0.9.4",

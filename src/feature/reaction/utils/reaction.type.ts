@@ -1,6 +1,6 @@
 export enum ReactionType {
-  CONSOLATION = 'conslations',
-  CONGRATULATION = 'congratulation',
+  CONSOLATION = 'consolations',
+  CONGRATULATION = 'congratulations',
   CHEERING = 'cheering',
   SYMPATHY = 'sympathy',
   ANGRY = 'angry',

@@ -1,4 +1,5 @@
 import getDate from '@src/common/function/getDate';
+import {getDotFormatDate} from '@src/common/function/getFormatDate';
 import ReactionButtons from '@src/feature/reaction/template/ReactionButtons';
 import React, {useEffect, useState} from 'react';
 import {StyleProp, View, Text, ViewStyle, TextStyle} from 'react-native';
@@ -77,6 +78,7 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
       });
     }
   });
+
   return (
     emotion && (
       <Modal
@@ -84,10 +86,12 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
         onBackdropPress={onClose}
         style={style.wrapper}>
         <View style={style.container}>
-          <Text style={style.date}>{getDate(emotion.date)}</Text>
+          <Text style={style.date}>
+            {getDotFormatDate(getDate(emotion.date))}
+          </Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
-          <ReactionButtons memoId={emotion.id} />
+          <ReactionButtons memoId={emotion.id} memberId={emotion.memberId} />
         </View>
       </Modal>
     )

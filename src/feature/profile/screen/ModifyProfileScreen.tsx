@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<rootStackParams, 'Profile'>;
 const Container = styled.View``;
 
 const ModifyProfileScreen = ({navigation, route}: Props) => {
-  const {profilePhotoUrl, nickname} = route.params;
+  const {profilePhotoUrl, nickname, name} = route.params;
 
   const [profilePhoto, setProfilePhoto] = useState<string | null>(
     profilePhotoUrl,
@@ -27,11 +27,10 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
     try {
       const file = await getFileFromGallery();
       if (file) {
-        const {uri, type} = file;
+        const {uri} = file;
         if (uri) {
           setProfilePhoto(uri);
-          const filename = `lee.${type}`;
-          const imgRef = firebase.storage().ref(`profile_photo/${filename}`);
+          const imgRef = firebase.storage().ref(`profile_photo/${name}`);
           const task = imgRef.putFile(uri);
 
           task.on(firebase.storage.TaskEvent.STATE_CHANGED, async snapshot => {

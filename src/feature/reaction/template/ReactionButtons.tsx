@@ -6,6 +6,7 @@ import {ReactionType, reactionTypeArray} from '../utils/reaction.type';
 
 interface Props {
   memoId: number;
+  memberId: number;
 }
 
 const Container = styled.View`
@@ -17,9 +18,9 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const ReactionButtons = ({memoId}: Props) => {
+const ReactionButtons = ({memoId, memberId}: Props) => {
   const onReactionClick = async (reactionType: ReactionType) => {
-    await addReactionAPI(memoId, reactionType);
+    await addReactionAPI(memoId, memberId, reactionType);
   };
   return (
     <Container>

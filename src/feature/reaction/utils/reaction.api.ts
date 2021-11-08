@@ -3,11 +3,12 @@ import {ReactionType} from './reaction.type';
 
 export const addReactionAPI = async (
   memoId: number,
+  receiveId: number,
   reactionType: ReactionType,
 ) => {
   await makeRequest({
-    url: 'reaction',
+    url: '/reaction',
     method: 'post',
-    data: {memoId, reaction: reactionType},
+    data: {memoId, receiveId, reaction: reactionType, type: 'reaction'},
   });
 };
