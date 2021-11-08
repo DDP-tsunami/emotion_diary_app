@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import ProfilePhoto from './ProfilePhoto';
+import ProfilePhoto from '../component/ProfilePhoto';
 
 interface Props {
   nickname: string;

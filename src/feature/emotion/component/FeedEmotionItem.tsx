@@ -1,4 +1,4 @@
-import SmallProfile from '@src/feature/profile/component/SmallProfile';
+import SmallProfile from '@src/feature/profile/template/SmallProfile';
 import React from 'react';
 import styled from 'styled-components/native';
 import {EmojiMapper, FeedEmotion} from '../utils/emotion.type';

@@ -1,5 +1,3 @@
-import {User} from '@src/feature/profile/utils/profile.type';
-
 export enum EmotionType {
   SUN = 'sun',
   RAIN = 'rain',
@@ -19,13 +17,12 @@ export interface Emotion {
   emotion: EmotionType;
   emotionScope: boolean;
   date: string;
-  member_id: string;
-  profilePhotoUrl: string | null;
-  name: string;
-  nickname: string;
   detailScope?: boolean;
 }
 
 export interface FeedEmotion extends Emotion {
-  user: User;
+  memberId: number;
+  profilePhotoUrl: string | null;
+  name: string;
+  nickname: string;
 }

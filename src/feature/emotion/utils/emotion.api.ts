@@ -30,3 +30,15 @@ export const getFeedEmotions = async (
   console.log('Get Feed Emotion : ', data);
   return data;
 };
+
+export const getEmotionsAPI = async (date: string) => {
+  const data = await makeRequest({
+    url: `/emotion/month?yearMonth=${date}`,
+  });
+  return data.memoList;
+};
+
+export const getEmotionDetailAPI = async (emotionId: number) => {
+  const {detail} = await makeRequest({url: `/emotion/detail/${emotionId}`});
+  return detail;
+};

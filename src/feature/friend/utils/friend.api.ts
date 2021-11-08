@@ -35,7 +35,7 @@ export const deleteFriends = async (friendId: string) => {
 
 export const requestFriendAPI = async (friendId: string) => {
   await makeRequest({
-    url: '/notice',
+    url: '/friend/request',
     method: 'post',
     data: {receiveId: friendId, type: 'friend'},
   });
