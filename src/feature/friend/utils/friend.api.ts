@@ -54,7 +54,7 @@ export const acceptFriendRequestAPI = async (
   noticeId: string,
 ) => {
   await makeRequest({
-    url: '/friend/acceptence',
+    url: '/friend/acceptance',
     method: 'post',
     data: {youId: friendId, noticeId},
   });

@@ -6,7 +6,6 @@ import ProfilePhoto from '../component/ProfilePhoto';
 
 type Props = {
   name: string;
-  code: string;
   email: string;
   photoUrl?: string | null;
 };
