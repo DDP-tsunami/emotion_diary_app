@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios, {AxiosRequestConfig} from 'axios';
 
-export const baseURL = 'http://172.30.1.47:8080/api';
+export const baseURL = 'http://192.168.200.193:8080/api';
 export default async function makeRequest(config: AxiosRequestConfig) {
   try {
     const token = await AsyncStorage.getItem('token');
@@ -14,5 +14,6 @@ export default async function makeRequest(config: AxiosRequestConfig) {
     return data;
   } catch (error) {
     console.log(error);
+    return null;
   }
 }

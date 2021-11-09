@@ -66,7 +66,7 @@ const AddEmotionScreen = ({navigation}: Props) => {
         }}
         label={'일기 공개설정'}
       />
-      <BasicButton title={'감정 추가하기'} onClick={onClick} disabled={true} />
+      <BasicButton title={'감정 추가하기'} onClick={onClick} />
     </Container>
   );
 };

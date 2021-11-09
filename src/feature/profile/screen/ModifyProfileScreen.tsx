@@ -4,12 +4,6 @@ import LabelInput from '@src/common/component/input/LabelInput';
 import React, {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import ProfilePhoto from '../component/ProfilePhoto';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import {rootStackParams} from '@src/common/utils/common.types';
-import {getFileFromGallery} from '@src/common/function/getPhoto';
-import {firebase} from '@react-native-firebase/storage';
-import {updateProfileAPI} from '../utils/profile.api';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';

@@ -48,3 +48,18 @@ export const searchFriendEmail = async (email: string): Promise<User[]> => {
   console.log('data : ', data);
   return data.memberInfoList;
 };
+
+export const acceptFriendRequestAPI = async (
+  friendId: string,
+  noticeId: string,
+) => {
+  await makeRequest({
+    url: '/friend/acceptence',
+    method: 'post',
+    data: {youId: friendId, noticeId},
+  });
+};
+
+export const refuseFriendRequestAPI = async (noticeId: string) => {
+  await makeRequest({url: `/friend/refusal/${noticeId}`, method: 'delete'});
+};

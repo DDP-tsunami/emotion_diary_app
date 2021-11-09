@@ -1,12 +1,13 @@
-import getDate from '@src/common/function/getDate';
-import {getDotFormatDate} from '@src/common/function/getFormatDate';
-import ReactionButtons from '@src/feature/reaction/template/ReactionButtons';
 import React, {useEffect, useState} from 'react';
 import {StyleProp, View, Text, ViewStyle, TextStyle} from 'react-native';
 import Modal from 'react-native-modal';
-import {getEmotionDetailAPI} from '../utils/emotion.api';
+
+import ReactionButtonSection from '@src/feature/reaction/template/ReactionButtonSection';
 
 import {EmojiMapper, FeedEmotion} from '../utils/emotion.type';
+import getDate from '@src/common/function/getDate';
+import {getDotFormatDate} from '@src/common/function/getFormatDate';
+import {getEmotionDetailAPI} from '../utils/emotion.api';
 
 interface Props {
   emotion: FeedEmotion | null;
@@ -16,7 +17,6 @@ interface Props {
 
 const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
   wrapper: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -91,7 +91,10 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
           </Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
-          <ReactionButtons memoId={emotion.id} memberId={emotion.memberId} />
+          <ReactionButtonSection
+            memoId={emotion.id}
+            memberId={emotion.memberId}
+          />
         </View>
       </Modal>
     )

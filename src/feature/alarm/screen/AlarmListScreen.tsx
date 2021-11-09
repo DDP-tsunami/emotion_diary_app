@@ -6,16 +6,25 @@ import {Alarm} from '../utils/alarm.type';
 
 const AlarmListScreen = () => {
   const [alarmList, setAlarmList] = useState<Alarm[]>([]);
+
   useState(() => {
     getAlarmListAPI().then(result => {
-      console.log(result);
       setAlarmList(result.notices);
     });
   }, []);
+
+  const onDeleteAlarm = (noticeId: string) => {
+    setAlarmList(alarmList.filter((alarm: Alarm) => alarm.id !== noticeId));
+  };
+
   return (
     <ScrollView>
       {alarmList.map(alarm => (
-        <AlarmItem key={alarm.id} alarm={alarm} />
+        <AlarmItem
+          key={alarm.id}
+          alarm={alarm}
+          onDelete={() => onDeleteAlarm(alarm.id)}
+        />
       ))}
     </ScrollView>
   );

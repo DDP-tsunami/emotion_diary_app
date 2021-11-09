@@ -3,11 +3,14 @@ import styled from 'styled-components/native';
 
 import ProfilePhoto from '@src/feature/profile/component/ProfilePhoto';
 
-import {Alarm} from '../utils/alarm.type';
-import AlarmText from './AlarmText';
+import {Alarm, AlarmType} from '../utils/alarm.type';
+import RequestAlarm from './RequestAlarm';
+import FriendAlarm from './FriendAlarm';
+import ReactionAlarm from './ReactionAlarm';
 
 interface Props {
   alarm: Alarm;
+  onDelete: () => void;
 }
 interface StyleProps {
   status: boolean;
@@ -15,7 +18,7 @@ interface StyleProps {
 
 const Container = styled.View<StyleProps>`
   width: 100%;
-  height: 120px;
+  height: 80px;
 
   display: flex;
   flex-direction: row;
@@ -28,11 +31,23 @@ const Container = styled.View<StyleProps>`
   background-color: ${props => (props.status ? '#e1e1e1' : '#fdfdfd')};
 `;
 
-const AlarmItem = ({alarm}: Props) => {
+const AlarmItem = ({alarm, onDelete}: Props) => {
+  const alarmMapper = {
+    [AlarmType.friendRequest]: (
+      <RequestAlarm
+        sender={alarm.sender}
+        noticeId={alarm.id}
+        onDelete={onDelete}
+      />
+    ),
+    [AlarmType.friendResponse]: <FriendAlarm sender={alarm.sender} />,
+    [AlarmType.reaction]: <ReactionAlarm sender={alarm.sender} />,
+  };
+
   return (
     <Container status={alarm.status}>
-      <ProfilePhoto photoUrl={alarm.sender.profilePhotoUrl} size={'80px'} />
-      <AlarmText type={alarm.type} userName={alarm.sender.name} />
+      <ProfilePhoto photoUrl={alarm.sender.profilePhotoUrl} size={'40px'} />
+      {alarmMapper[alarm.type]}
     </Container>
   );
 };

@@ -21,3 +21,12 @@ export const updateProfileAPI = async (
     console.log(error);
   }
 };
+
+export const getUserInfoAPI = async (): Promise<boolean> => {
+  try {
+    const result = await makeRequest({url: '/user', method: 'get'});
+    return result;
+  } catch (error) {
+    return false;
+  }
+};

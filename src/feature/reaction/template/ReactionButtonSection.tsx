@@ -18,7 +18,7 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const ReactionButtons = ({memoId, memberId}: Props) => {
+const ReactionButtonSection = ({memoId, memberId}: Props) => {
   const onReactionClick = async (reactionType: ReactionType) => {
     await addReactionAPI(memoId, memberId, reactionType);
   };
@@ -35,4 +35,4 @@ const ReactionButtons = ({memoId, memberId}: Props) => {
   );
 };
 
-export default ReactionButtons;
+export default ReactionButtonSection;
