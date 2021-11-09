@@ -3,23 +3,53 @@ import styled from 'styled-components/native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
-import LabelInput from '@src/common/component/input/LabelInput';
 import BasicButton from '@src/common/component/button/BasicButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {signUpAPI} from '../utils/login.api';
+import {color} from '@src/common/utils/common.style';
+import LoginInput from '@src/common/component/input/LoginInput';
+import Logo from '@src/common/component/Logo';
 
 type Props = NativeStackScreenProps<rootStackParams, 'SignUp'>;
 
+const Wrapper = styled(KeyboardAwareScrollView)`
+  width: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  background-color: ${color.main};
+`;
+
 const Container = styled.View`
   width: 100%;
-  height: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30% 0px;
+`;
+
+const InputSection = styled.View`
+  width: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  padding-top: 20px;
+  margin-bottom: 32px;
+`;
+
+const NameSection = styled.View`
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const SignUpScreen = ({navigation}: Props) => {
@@ -38,27 +68,46 @@ const SignUpScreen = ({navigation}: Props) => {
   };
 
   return (
-    <KeyboardAwareScrollView>
+    <Wrapper>
       <Container>
-        <LabelInput label={'아이디'} value={id} onChange={setId} />
-        <LabelInput label={'이메일'} value={email} onChange={setEmail} />
-        <LabelInput label={'이름'} value={name} onChange={setName} />
-        <LabelInput label={'닉네임'} value={nickname} onChange={setNickname} />
-        <LabelInput label={'비밀번호'} value={pw} onChange={setPw} />
-        <LabelInput
-          label={'비밀번호 확인'}
-          value={pwCheck}
-          onChange={setPwCheck}
-        />
+        <Logo size={'80px'} />
+        <InputSection>
+          <LoginInput value={id} onChange={setId} placeholder={'아이디'} />
+          <LoginInput
+            value={email}
+            onChange={setEmail}
+            placeholder={'이메일'}
+          />
+          <NameSection>
+            <LoginInput
+              value={name}
+              onChange={setName}
+              placeholder={'이름'}
+              width={'40%'}
+            />
+            <LoginInput
+              value={nickname}
+              onChange={setNickname}
+              placeholder={'닉네임'}
+              width={'50%'}
+            />
+          </NameSection>
+          <LoginInput value={pw} onChange={setPw} placeholder={'비밀번호'} />
+          <LoginInput
+            placeholder={'비밀번호 확인'}
+            value={pwCheck}
+            onChange={setPwCheck}
+          />
+        </InputSection>
         <BasicButton
           title={'회원가입'}
-          width={'100%'}
-          height={'32px'}
-          disabled={true}
+          width={'60%'}
+          height={'44px'}
+          disabled={pw !== pwCheck}
           onClick={onSignUp}
         />
       </Container>
-    </KeyboardAwareScrollView>
+    </Wrapper>
   );
 };
 

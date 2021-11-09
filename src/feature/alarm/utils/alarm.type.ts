@@ -1,8 +1,9 @@
 import {User} from '@src/feature/profile/utils/profile.type';
 
 export enum AlarmType {
-  friend = 'friend',
-  reaction = 'reaction',
+  friendRequest = 'FRIEND_REQUEST',
+  friendResponse = 'FRIEND_RESPONSE',
+  reaction = 'REACTION',
 }
 
 export type Alarm = {

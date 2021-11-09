@@ -11,8 +11,6 @@ export const updateProfileAPI = async (
   photoUrl: string | null,
 ) => {
   try {
-    console.log('Photo URL : ', photoUrl);
-
     await makeRequest({
       url: '/user/profile',
       method: 'put',
@@ -20,5 +18,14 @@ export const updateProfileAPI = async (
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getUserInfoAPI = async (): Promise<boolean> => {
+  try {
+    const result = await makeRequest({url: '/user', method: 'get'});
+    return result;
+  } catch (error) {
+    return false;
   }
 };

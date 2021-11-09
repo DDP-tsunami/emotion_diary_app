@@ -22,6 +22,7 @@ const FriendSearch = () => {
   };
 
   const onFriendRequest = async (id: string) => {
+    setSearchedFriends(searchedFriends.filter(friend => friend.id !== id));
     requestFriendAPI(id);
   };
 

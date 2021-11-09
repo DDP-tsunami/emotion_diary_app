@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
-import {getProfileDataAPI} from '@src/feature/profile/utils/profile.api';
+import {getUserInfoAPI} from '@src/feature/profile/utils/profile.api';
 import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
 import {color} from '../utils/common.style';
