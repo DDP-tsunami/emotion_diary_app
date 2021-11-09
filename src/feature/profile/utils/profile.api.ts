@@ -24,7 +24,11 @@ export const updateProfileAPI = async (
 export const getUserInfoAPI = async (): Promise<boolean> => {
   try {
     const result = await makeRequest({url: '/user', method: 'get'});
-    return result;
+    if (result) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     return false;
   }

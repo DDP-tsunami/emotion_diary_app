@@ -5,7 +5,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import BasicButton from '@src/common/component/button/BasicButton';
 import {rootStackParams} from '@src/common/utils/common.types';
 import {User} from '@src/feature/profile/utils/profile.type';
-import {getProfileData} from '@src/feature/profile/utils/profile.api';
+import {getProfileDataAPI} from '@src/feature/profile/utils/profile.api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Profile from '@src/feature/profile/template/Profile';
 import EmotionCalendar from '../component/EmotionCalendar';
@@ -20,7 +20,7 @@ const MyPageScreen = ({navigation}: Props) => {
   const [user, setUser] = useState<User | null>(null);
 
   const getProfile = async () => {
-    const profile = await getProfileData();
+    const profile = await getProfileDataAPI();
     setUser(profile);
   };
 

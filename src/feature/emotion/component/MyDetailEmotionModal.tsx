@@ -2,14 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {StyleProp, View, Text, ViewStyle, TextStyle} from 'react-native';
 import Modal from 'react-native-modal';
 
-import {EmojiMapper, FeedEmotion} from '../utils/emotion.type';
+import {EmojiMapper, Emotion} from '../utils/emotion.type';
 import getDate from '@src/common/function/getDate';
 import {getDotFormatDate} from '@src/common/function/getFormatDate';
 import {getEmotionDetailAPI} from '../utils/emotion.api';
-import ReactionButtonSection from '@src/feature/reaction/template/ReactionButtonSection';
 
 interface Props {
-  emotion: FeedEmotion | null;
+  emotion: Emotion | null;
   isVisible: boolean;
   onClose: () => void;
 }
@@ -67,7 +66,7 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
   },
 };
 
-const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
+const MyDetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
   const [detail, setDetail] = useState('');
 
   useEffect(() => {
@@ -90,14 +89,10 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
           </Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
-          <ReactionButtonSection
-            memoId={emotion.id}
-            memberId={emotion.memberId}
-          />
         </View>
       </Modal>
     )
   );
 };
 
-export default DetailEmotionModal;
+export default MyDetailEmotionModal;

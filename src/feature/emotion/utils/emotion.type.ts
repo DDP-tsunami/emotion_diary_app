@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum EmotionType {
   SUN = 'sun',
   RAIN = 'rain',
@@ -26,3 +28,14 @@ export interface FeedEmotion extends Emotion {
   name: string;
   nickname: string;
 }
+
+export type CustomEvent = {
+  start: Date;
+  end: Date;
+  title: EmotionType;
+  emotion: Emotion;
+  children?: React.ReactComponentElement<
+    any,
+    string | React.JSXElementConstructor<any>
+  >;
+};

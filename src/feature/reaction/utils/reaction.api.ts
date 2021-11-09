@@ -9,6 +9,6 @@ export const addReactionAPI = async (
   await makeRequest({
     url: '/reaction',
     method: 'post',
-    data: {memoId, receiveId, reaction: reactionType, type: 'reaction'},
+    data: {memoId, receiveId, reaction: reactionType, type: 'REACTION'},
   });
 };

@@ -25,7 +25,7 @@ const Text = styled.Text`
 
 const SplashScreen = ({navigation}: Props) => {
   const onSplash = async () => {
-    const result = await getProfileDataAPI();
+    const result = await getUserInfoAPI();
     if (result) {
       navigation.push('Main');
     } else {
