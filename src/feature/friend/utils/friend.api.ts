@@ -24,15 +24,6 @@ export const getFriendsRequestList = async () => {
   }
 };
 
-export const deleteFriends = async (friendId: string) => {
-  try {
-    await makeRequest({
-      url: `/friend/${friendId}`,
-      method: 'delete',
-    });
-  } catch (error) {}
-};
-
 export const requestFriendAPI = async (friendId: string) => {
   await makeRequest({
     url: '/friend/request',
@@ -62,4 +53,8 @@ export const acceptFriendRequestAPI = async (
 
 export const refuseFriendRequestAPI = async (noticeId: string) => {
   await makeRequest({url: `/friend/refusal/${noticeId}`, method: 'delete'});
+};
+
+export const deleteFriendAPI = async (friendId: string) => {
+  await makeRequest({url: `/friend/${friendId}`, method: 'DELETE'});
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import BasicButton from '@src/common/component/button/BasicButton';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
@@ -23,13 +24,14 @@ const FeedScreen = () => {
     null,
   );
 
+  const getEmotion = async () => {
+    const {lines, totalCount: t} = await getFeedEmotions(0);
+    setEmotions([...emotions, ...lines]);
+    setTotalCount(t);
+  };
+
   useEffect(() => {
-    getFeedEmotions(0).then(({lines: e, totalCount: t}) => {
-      console.log('Total Count : ', t);
-      console.log('Emotions : ', e);
-      setEmotions([...e]);
-      setTotalCount(t);
-    });
+    getEmotion();
   }, []);
 
   const onMoreFeed = async () => {

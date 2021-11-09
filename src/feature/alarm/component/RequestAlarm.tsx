@@ -11,7 +11,7 @@ import {
 interface Props {
   noticeId: string;
   sender: User;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 
 const Container = styled.View`
@@ -41,11 +41,11 @@ const ButtonSection = styled.View`
 const RequestAlarm = ({sender, noticeId, onDelete}: Props) => {
   const onAccept = async () => {
     await acceptFriendRequestAPI(sender.id, noticeId);
-    onDelete();
+    onDelete && onDelete();
   };
   const onRefuse = async () => {
     await refuseFriendRequestAPI(noticeId);
-    onDelete();
+    onDelete && onDelete();
   };
 
   return (

@@ -4,7 +4,7 @@ import {ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import FriendListItem from '../component/FriendListItem';
 import FriendSearch from '../component/FriendSearch';
-import {getFriendList} from '../utils/friend.api';
+import {deleteFriendAPI, getFriendList} from '../utils/friend.api';
 
 const Title = styled.Text`
   width: 100%;
@@ -25,12 +25,24 @@ const FriendListScreen = () => {
     });
   }, []);
 
+  const onDelete = (id: string) => {
+    deleteFriendAPI(id);
+    setFriends(friends.filter(friend => friend.id !== id));
+  };
+
   return (
     <ScrollView>
       <FriendSearch />
       <Title>친구 리스트</Title>
       {friends.map(friend => (
-        <FriendListItem key={friend.id} friend={friend} buttonText={'삭제'} />
+        <FriendListItem
+          key={friend.id}
+          friend={friend}
+          buttonText={'삭제'}
+          onClick={() => {
+            onDelete(friend.id);
+          }}
+        />
       ))}
     </ScrollView>
   );

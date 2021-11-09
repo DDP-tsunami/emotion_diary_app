@@ -10,7 +10,7 @@ import ReactionAlarm from './ReactionAlarm';
 
 interface Props {
   alarm: Alarm;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 interface StyleProps {
   status: boolean;

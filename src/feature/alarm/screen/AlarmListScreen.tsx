@@ -1,32 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
-import AlarmItem from '../component/AlarmItem';
-import {getAlarmListAPI} from '../utils/alarm.api';
-import {Alarm} from '../utils/alarm.type';
+import React from 'react';
+import styled from 'styled-components/native';
+import FriendAlarmList from '../component/FriendAlarmList';
+import ReactionAlarmList from '../component/ReactionAlarmList';
+
+const Container = styled.View`
+  width: 100%;
+  height: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 const AlarmListScreen = () => {
-  const [alarmList, setAlarmList] = useState<Alarm[]>([]);
-
-  useEffect(() => {
-    getAlarmListAPI().then(result => {
-      setAlarmList(result.notices);
-    });
-  }, []);
-
-  const onDeleteAlarm = (noticeId: string) => {
-    setAlarmList(alarmList.filter((alarm: Alarm) => alarm.id !== noticeId));
-  };
-
   return (
-    <ScrollView>
-      {alarmList.map(alarm => (
-        <AlarmItem
-          key={alarm.id}
-          alarm={alarm}
-          onDelete={() => onDeleteAlarm(alarm.id)}
-        />
-      ))}
-    </ScrollView>
+    <Container>
+      <ReactionAlarmList />
+      <FriendAlarmList />
+    </Container>
   );
 };
 
