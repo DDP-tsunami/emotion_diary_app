@@ -56,7 +56,7 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
         <ProfilePhoto photoUrl={profilePhoto} />
       </TouchableOpacity>
       <LabelInput label={'별명'} value={newNickName} onChange={setNickName} />
-      <BasicButton title={'완료'} onClick={onSubmit} disabled={true} />
+      <BasicButton title={'완료'} onClick={onSubmit} />
     </Container>
   );
 };

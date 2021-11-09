@@ -12,6 +12,7 @@ const AlarmListScreen = () => {
       setAlarmList(result.notices);
     });
   }, []);
+
   return (
     <ScrollView>
       {alarmList.map(alarm => (
