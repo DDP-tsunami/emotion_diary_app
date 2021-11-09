@@ -2,6 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
+import {getProfileDataAPI} from '@src/feature/profile/utils/profile.api';
 import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
 import {color} from '../utils/common.style';
@@ -24,14 +25,13 @@ const Text = styled.Text`
 `;
 
 const SplashScreen = ({navigation}: Props) => {
-  const onSplash = () => {
-    AsyncStorage.getItem('token').then(token => {
-      if (token) {
-        navigation.push('Main');
-      } else {
-        navigation.push('Login');
-      }
-    });
+  const onSplash = async () => {
+    const result = await getProfileDataAPI();
+    if (result) {
+      navigation.push('Main');
+    } else {
+      navigation.push('Login');
+    }
   };
   useEffect(() => {
     setTimeout(onSplash, 3000);
