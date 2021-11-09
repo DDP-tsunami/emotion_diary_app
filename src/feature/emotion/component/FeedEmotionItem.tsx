@@ -1,4 +1,5 @@
 import SmallProfile from '@src/feature/profile/template/SmallProfile';
+import ReactionButtonSection from '@src/feature/reaction/template/ReactionButtonSection';
 import React from 'react';
 import styled from 'styled-components/native';
 import {EmojiMapper, FeedEmotion} from '../utils/emotion.type';
@@ -9,7 +10,7 @@ interface Props {
 
 const Container = styled.View`
   width: 80%;
-  height: 120px;
+  height: 150px;
 
   align-self: center;
 
@@ -30,6 +31,8 @@ const Emoji = styled.Text`
   align-self: center;
 
   font-size: 40px;
+
+  margin-bottom: 8px;
 `;
 
 const FeedEmotionItem = ({emotion}: Props) => {
@@ -41,6 +44,7 @@ const FeedEmotionItem = ({emotion}: Props) => {
         profilePhotoUrl={emotion.profilePhotoUrl}
       />
       <Emoji>{EmojiMapper[emotion.emotion]}</Emoji>
+      <ReactionButtonSection memoId={emotion.id} memberId={emotion.memberId} />
     </Container>
   );
 };

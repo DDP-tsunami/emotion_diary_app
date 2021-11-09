@@ -6,7 +6,6 @@ import {EmojiMapper, FeedEmotion} from '../utils/emotion.type';
 import getDate from '@src/common/function/getDate';
 import {getDotFormatDate} from '@src/common/function/getFormatDate';
 import {getEmotionDetailAPI} from '../utils/emotion.api';
-import ReactionButtonSection from '@src/feature/reaction/template/ReactionButtonSection';
 
 interface Props {
   emotion: FeedEmotion | null;
@@ -23,7 +22,7 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
   },
   container: {
     width: '90%',
-    height: '60%',
+    height: 280,
 
     display: 'flex',
     flexDirection: 'column',
@@ -90,10 +89,6 @@ const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
           </Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
-          <ReactionButtonSection
-            memoId={emotion.id}
-            memberId={emotion.memberId}
-          />
         </View>
       </Modal>
     )

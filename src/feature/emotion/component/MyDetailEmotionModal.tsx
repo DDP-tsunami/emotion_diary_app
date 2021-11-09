@@ -6,6 +6,7 @@ import {EmojiMapper, Emotion} from '../utils/emotion.type';
 import getDate from '@src/common/function/getDate';
 import {getDotFormatDate} from '@src/common/function/getFormatDate';
 import {getEmotionDetailAPI} from '../utils/emotion.api';
+import ReactionList from '@src/feature/reaction/template/ReactionList';
 
 interface Props {
   emotion: Emotion | null;
@@ -89,6 +90,7 @@ const MyDetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
           </Text>
           <Text style={style.emotion}>{EmojiMapper[emotion.emotion]}</Text>
           <Text style={style.detail}>{detail}</Text>
+          <ReactionList memoId={emotion.id} />
         </View>
       </Modal>
     )
