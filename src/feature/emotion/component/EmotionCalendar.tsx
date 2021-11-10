@@ -45,8 +45,8 @@ const EmotionCalendar = () => {
     );
     setEvents(eventList);
   };
-  const eventItem: EventRenderer<any> = (
-    event: ICalendarEvent<any>,
+  const eventItem: EventRenderer<CustomEvent> = (
+    event: ICalendarEvent<CustomEvent>,
     touchProps: CalendarTouchableOpacityProps,
   ) => <Event onPress={touchProps.onPress}>{event.children}</Event>;
 

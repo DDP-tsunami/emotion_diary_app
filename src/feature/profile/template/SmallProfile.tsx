@@ -47,7 +47,7 @@ const Name = styled.Text`
 const SmallProfile = ({nickname, name, profilePhotoUrl}: Props) => {
   return (
     <Container>
-      <ProfilePhoto photoUrl={profilePhotoUrl} size={'32px'} />
+      <ProfilePhoto photoUrl={profilePhotoUrl} size={32} />
       <Content>
         <Nickname>{nickname}</Nickname>
         <Name>{name}</Name>

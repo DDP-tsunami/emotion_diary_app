@@ -1,6 +1,5 @@
-import Clipboard from '@react-native-clipboard/clipboard';
+import {color} from '@src/common/utils/common.style';
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import ProfilePhoto from '../component/ProfilePhoto';
 
@@ -8,17 +7,21 @@ type Props = {
   name: string;
   email: string;
   photoUrl?: string | null;
+  disabled?: boolean;
+  onClick?: () => void;
 };
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: row;
+
+  background-color: transparent;
+
+  margin-bottom: 12px;
 `;
 
 const Name = styled.Text`
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 
   font-size: 20px;
   font-weight: bold;
@@ -27,7 +30,7 @@ const Name = styled.Text`
 const Code = styled.Text`
   padding: 4px 8px 6px 8px;
 
-  background-color: #cdcdcd;
+  background-color: ${color.background};
   border: none;
   border-radius: 4px;
 
@@ -35,20 +38,25 @@ const Code = styled.Text`
 
   font-size: 12px;
   font-weight: normal;
-  color: #080808;
+  color: ${color.black};
 `;
-const Profile = ({name, photoUrl, email}: Props) => {
-  const onCopy = () => {
-    Clipboard.setString(email);
-  };
+const Content = styled.View`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
 
+  margin-left: 16px;
+`;
+
+const Profile = ({name, photoUrl, email, onClick, disabled}: Props) => {
   return (
-    <Container>
-      <ProfilePhoto photoUrl={photoUrl} />
-      <Name>{name}</Name>
-      <TouchableOpacity onPress={onCopy}>
+    <Container onPress={onClick} disabled={disabled}>
+      <ProfilePhoto photoUrl={photoUrl} size={80} />
+      <Content>
+        <Name>{name}</Name>
         <Code>{email}</Code>
-      </TouchableOpacity>
+      </Content>
     </Container>
   );
 };

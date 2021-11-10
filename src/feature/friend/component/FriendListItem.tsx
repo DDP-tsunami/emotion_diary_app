@@ -50,7 +50,7 @@ const FriendListItem = ({friend, buttonText, onClick}: Props) => {
   return (
     <Container>
       <Profile>
-        <ProfilePhoto photoUrl={friend.profilePhotoUrl} size={'40px'} />
+        <ProfilePhoto photoUrl={friend.profilePhotoUrl} size={40} />
         <Name>{friend.name}</Name>
       </Profile>
       <Button title={buttonText} onPress={onClick} />

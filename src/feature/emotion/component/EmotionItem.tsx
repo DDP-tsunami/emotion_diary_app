@@ -12,10 +12,22 @@ interface ImageProps {
 }
 
 const Container = styled.TouchableOpacity<ImageProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+
   background-color: ${props => (props.isSelected ? '#cdcdcd' : '#fff')};
+
+  border-radius: 20px;
 `;
 const Emoji = styled.Text`
-  font-size: 16px;
+  align-self: center;
+
+  font-size: 50px;
+  text-align: center;
 `;
 
 const EmotionItem = ({emoji, isSelected, onClick}: Props) => {

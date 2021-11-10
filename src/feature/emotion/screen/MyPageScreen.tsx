@@ -9,11 +9,23 @@ import {getProfileDataAPI} from '@src/feature/profile/utils/profile.api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Profile from '@src/feature/profile/template/Profile';
 import EmotionCalendar from '../component/EmotionCalendar';
+import {color} from '@src/common/utils/common.style';
+import BackGroundImage from '../component/BackGroundImage';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Main'>;
 
-const Container = styled.View`
-  padding: 20px 0;
+const Container = styled.ScrollView`
+  flex: 1;
+
+  background-color: ${color.white};
+`;
+
+const Content = styled.View`
+  width: 100%;
+
+  padding: 5% 10%;
+
+  background-color: transparent;
 `;
 
 const MyPageScreen = ({navigation}: Props) => {
@@ -40,14 +52,17 @@ const MyPageScreen = ({navigation}: Props) => {
 
   return user ? (
     <Container>
-      <Profile
-        name={user.nickname}
-        email={user.email}
-        photoUrl={user?.profilePhotoUrl}
-      />
-      <BasicButton title={'프로필 수정하기'} onClick={onUpdate} />
-      <BasicButton title={'로그아웃'} onClick={onLogOut} />
-      <EmotionCalendar />
+      <BackGroundImage />
+      <Content>
+        <Profile
+          name={user.nickname}
+          email={user.email}
+          photoUrl={user?.profilePhotoUrl}
+          onClick={onUpdate}
+        />
+        <BasicButton title={'로그아웃'} onClick={onLogOut} />
+        <EmotionCalendar />
+      </Content>
     </Container>
   ) : null;
 };

@@ -5,4 +5,5 @@ export const color = {
   black: '#70656B',
 
   disabled: '#d3dbdc',
+  background: '#ececeb',
 };
