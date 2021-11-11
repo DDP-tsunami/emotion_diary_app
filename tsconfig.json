@@ -10,9 +10,10 @@
     "noEmit": true,
     "strict": true,
     "target": "esnext",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@src/*": ["./*"]
+      "@src/*": ["./src/*"],
+      "@res/*": ["./res/*"]
     }
   },
   "exclude": [

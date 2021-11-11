@@ -46,7 +46,7 @@ const AlarmItem = ({alarm, onDelete}: Props) => {
 
   return (
     <Container status={alarm.status}>
-      <ProfilePhoto photoUrl={alarm.sender.profilePhotoUrl} size={'40px'} />
+      <ProfilePhoto photoUrl={alarm.sender.profilePhotoUrl} size={40} />
       {alarmMapper[alarm.type]}
     </Container>
   );

@@ -1,3 +1,4 @@
+import {color} from '@src/common/utils/common.style';
 import React from 'react';
 import styled from 'styled-components/native';
 import FriendAlarmList from '../component/FriendAlarmList';
@@ -11,6 +12,8 @@ const Container = styled.View`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  background-color: ${color.white};
 `;
 
 const AlarmListScreen = () => {

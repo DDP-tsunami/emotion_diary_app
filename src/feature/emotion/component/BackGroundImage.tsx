@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 
-const defaultBackground = require('@src/common/image/default_background.png');
+const defaultBackground = require('@res/image/default_background.png');
 
 const Image = styled.Image`
   width: 100%;

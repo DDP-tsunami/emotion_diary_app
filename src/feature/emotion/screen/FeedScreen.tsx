@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import BasicButton from '@src/common/component/button/BasicButton';
+import {color} from '@src/common/utils/common.style';
 import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
@@ -14,6 +15,8 @@ const Container = styled.ScrollView`
 
   display: flex;
   flex-direction: column;
+
+  background-color: ${color.white};
 `;
 
 const FeedScreen = () => {

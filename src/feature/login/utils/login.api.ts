@@ -13,7 +13,6 @@ export const loginAPI = async (
         password,
       },
     );
-    console.log('data : ', data.token);
     return data.token;
   } catch (error) {
     console.log(error);

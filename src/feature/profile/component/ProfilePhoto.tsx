@@ -3,7 +3,7 @@ import React from 'react';
 import {Shadow} from 'react-native-shadow-2';
 import styled from 'styled-components/native';
 
-const defaultImage = require('@src/common/image/default_profile.png');
+const defaultImage = require('@res/image/default_profile.png');
 interface Props {
   photoUrl?: string | null;
   size?: number;

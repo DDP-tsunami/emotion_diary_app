@@ -1,10 +1,15 @@
-import {User} from '@src/feature/profile/utils/profile.type';
 import React, {useEffect, useState} from 'react';
-import {ScrollView} from 'react-native';
 import styled from 'styled-components/native';
 import FriendListItem from '../component/FriendListItem';
 import FriendSearch from '../component/FriendSearch';
 import {deleteFriendAPI, getFriendList} from '../utils/friend.api';
+
+import {color} from '@src/common/utils/common.style';
+import {User} from '@src/feature/profile/utils/profile.type';
+
+const Container = styled.ScrollView`
+  background-color: ${color.white};
+`;
 
 const Title = styled.Text`
   width: 100%;
@@ -31,7 +36,7 @@ const FriendListScreen = () => {
   };
 
   return (
-    <ScrollView>
+    <Container>
       <FriendSearch />
       <Title>친구 리스트</Title>
       {friends.map(friend => (
@@ -44,7 +49,7 @@ const FriendListScreen = () => {
           }}
         />
       ))}
-    </ScrollView>
+    </Container>
   );
 };
 

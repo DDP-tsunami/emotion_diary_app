@@ -18,6 +18,7 @@ module.exports = {
         ],
         alias: {
           '@src': './src',
+          '@res': './res',
         },
       },
     ],

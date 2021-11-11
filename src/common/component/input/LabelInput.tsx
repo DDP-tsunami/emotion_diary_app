@@ -4,21 +4,26 @@ import styled from 'styled-components/native';
 interface Props {
   label: string;
   value: string;
-  onChange: (s: string) => void;
+  editable?: boolean;
+  onChange?: (s: string) => void;
   textContentType?: 'name' | 'none' | 'password';
   placeholder?: string;
 }
 
 const Container = styled.View`
-  width: 60%;
+  width: 100%;
   height: 60px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 `;
-const Label = styled.Text``;
+const Label = styled.Text`
+  min-width: 40px;
+
+  margin-right: 20px;
+`;
 const MyInput = styled.TextInput``;
 
 const LabelInput = ({
@@ -26,6 +31,7 @@ const LabelInput = ({
   value,
   textContentType,
   placeholder,
+  editable,
   onChange,
 }: Props) => {
   return (
@@ -36,6 +42,7 @@ const LabelInput = ({
         value={value}
         placeholder={placeholder}
         textContentType={textContentType}
+        editable={editable}
       />
     </Container>
   );

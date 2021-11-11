@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-const LogoImage = require('@src/common/image/app_logo.png');
+const LogoImage = require('@res/image/app_logo.png');
 
 interface Props {
   size: string;

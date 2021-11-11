@@ -49,7 +49,7 @@ export const deleteReactionAPI = async (
 ) => {
   await makeRequest({
     url: `/reaction/${reactionId}`,
-    method: 'put',
+    method: 'delete',
     data: {reactionId, reaction, receiveId},
   });
 };
