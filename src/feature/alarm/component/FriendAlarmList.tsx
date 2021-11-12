@@ -6,6 +6,10 @@ import {getFriendNoticeListAPI} from '../utils/alarm.api';
 import {Alarm} from '../utils/alarm.type';
 import AlarmItem from './AlarmItem';
 
+interface Props {
+  isFocus: boolean;
+}
+
 const Container = styled.ScrollView`
   height: 40%;
   width: 100%;
@@ -15,7 +19,7 @@ const Button = styled.TouchableOpacity`
   width: 100%;
 `;
 
-const FriendAlarmList = () => {
+const FriendAlarmList = ({isFocus}: Props) => {
   const [friendAlarmList, setFriendAlarmList] = useState<Alarm[]>([]);
   const [start, setStart] = useState<number>(0);
   const [totalCount, setTotalCount] = useState<number>(0);
@@ -28,11 +32,13 @@ const FriendAlarmList = () => {
   };
   const onDelete = (noticeId: string) => {
     setFriendAlarmList(friendAlarmList.filter(alarm => alarm.id !== noticeId));
+    setStart(start - 1);
+    setTotalCount(totalCount - 1);
   };
 
   useEffect(() => {
     getAlarmList();
-  }, []);
+  }, [isFocus]);
 
   useEffect(() => {
     setStart(friendAlarmList.length);
@@ -40,7 +46,6 @@ const FriendAlarmList = () => {
 
   return (
     <Container>
-      <Text>친구 알람</Text>
       {friendAlarmList.map(alarm => (
         <AlarmItem
           key={alarm.id}

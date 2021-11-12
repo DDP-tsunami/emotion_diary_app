@@ -12,6 +12,8 @@ import VioletButton from '@src/common/component/button/VioletButton';
 import {color} from '@src/common/utils/common.style';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LabelItem from '@src/common/component/item/LabelItem';
+import BasicButton from '@src/common/component/button/BasicButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Profile'>;
 
@@ -32,7 +34,7 @@ const Container = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 
   background-color: ${color.white};
 `;
@@ -71,6 +73,7 @@ const ImageModifyButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
+
 const Text = styled.Text`
   font-weight: bold;
 `;
@@ -85,6 +88,7 @@ const InputSection = styled.View`
   align-items: center;
 
   padding: 30%;
+  margin-bottom: 20px;
 
   border: 1px solid ${color.black};
 `;
@@ -123,6 +127,10 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
     await updateProfileAPI(newNickName, profilePhoto);
     navigation.push('Main');
   };
+  const onLogOut = async () => {
+    await AsyncStorage.removeItem('token');
+    navigation.push('Login');
+  };
 
   return (
     <Wrapper>
@@ -150,6 +158,7 @@ const ModifyProfileScreen = ({navigation, route}: Props) => {
             onChange={setNickName}
           />
         </InputSection>
+        <BasicButton title={'로그아웃'} onClick={onLogOut} />
       </Container>
     </Wrapper>
   );

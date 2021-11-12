@@ -8,10 +8,15 @@ interface Props {
 
 const Container = styled.Text`
   flex: 1;
+
+  margin-left: 12px;
+
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 
 const FriendAlarm = ({sender}: Props) => {
-  return <Container>{`${sender.name}님과 친구가 되셨습니다.`}</Container>;
+  return <Container>{`${sender.name}님과\n친구가 되셨습니다.`}</Container>;
 };
 
 export default FriendAlarm;

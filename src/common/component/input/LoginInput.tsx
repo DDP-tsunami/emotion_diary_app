@@ -1,3 +1,4 @@
+import {color} from '@src/common/utils/common.style';
 import React from 'react';
 import styled from 'styled-components/native';
 
@@ -15,11 +16,11 @@ interface ImageProps {
 const Input = styled.TextInput<ImageProps>`
   width: ${props => (props.width ? props.width : '60%')};
 
-  border-bottom-color: #fff;
+  border-bottom-color: ${color.black};
   border-bottom-width: 4px;
 
   font-size: 20px;
-  color: #fff;
+  color: ${color.black};
 
   margin-bottom: 12px;
 `;
@@ -30,7 +31,7 @@ const LoginInput = ({value, onChange, placeholder, width}: Props) => {
       value={value}
       onChangeText={onChange}
       placeholder={placeholder}
-      placeholderTextColor={'#fff'}
+      placeholderTextColor={color.black}
       width={width}
     />
   );

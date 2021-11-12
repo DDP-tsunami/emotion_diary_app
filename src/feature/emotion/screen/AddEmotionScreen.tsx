@@ -1,13 +1,18 @@
+import {useIsFocused} from '@react-navigation/core';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import BlackButton from '@src/common/component/button/BlackButton';
 import BasixCheckBox from '@src/common/component/checkbox/BasicCheckBox';
 import {color} from '@src/common/utils/common.style';
 import {rootStackParams} from '@src/common/utils/common.types';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import EmotionPicker from '../component/EmotionPicker';
-import {addEmotionAPI} from '../utils/emotion.api';
-import {EmotionType} from '../utils/emotion.type';
+import {
+  addEmotionAPI,
+  getTodayEmotionAPI,
+  updateTodayEmotionAPI,
+} from '../utils/emotion.api';
+import {EmotionType, MyEmotion} from '../utils/emotion.type';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Main'>;
 
@@ -87,6 +92,9 @@ const Label = styled.Text`
 `;
 
 const AddEmotionScreen = ({navigation}: Props) => {
+  const isFocused = useIsFocused();
+
+  const [currentEmotion, setCurrentEmotion] = useState<MyEmotion | null>(null);
   const [emotion, setEmotion] = useState<EmotionType | null>(null);
   const [emotionScope, setEmotionScope] = useState<boolean>(false);
   const [detail, setDetail] = useState<string>('');
@@ -94,17 +102,53 @@ const AddEmotionScreen = ({navigation}: Props) => {
 
   const onSubmit = async () => {
     if (emotion) {
-      const result = await addEmotionAPI(
-        emotion,
-        emotionScope,
-        detail,
-        detailScope,
-      );
-      if (result) {
-        navigation.push('Main');
+      if (currentEmotion) {
+        const result = await updateTodayEmotionAPI(
+          currentEmotion.id,
+          emotion,
+          emotionScope,
+          detailScope,
+          detail,
+        );
+        if (result) {
+          navigation.push('Main');
+        }
+      } else {
+        const result = await addEmotionAPI(
+          emotion,
+          emotionScope,
+          detail,
+          detailScope,
+        );
+        if (result) {
+          navigation.push('Main');
+        }
       }
     }
   };
+  const getTodayEmotion = async () => {
+    const result = await getTodayEmotionAPI();
+
+    if (result?.memoList.length) {
+      const {
+        emotion: currentEmotionType,
+        emotionScope: currentEmotionScope,
+        detailScope: currentDetailScope,
+        detail: currentDetail,
+      } = result.memoList[0];
+      setCurrentEmotion(result.memoList[0]);
+      setEmotion(currentEmotionType);
+      setEmotionScope(currentEmotionScope);
+      setDetailScope(currentDetailScope);
+      currentDetail && setDetail(currentDetail);
+    } else {
+      setCurrentEmotion(null);
+    }
+  };
+
+  useEffect(() => {
+    getTodayEmotion();
+  }, [isFocused]);
 
   return (
     <Container>

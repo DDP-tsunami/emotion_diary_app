@@ -1,5 +1,10 @@
 import React from 'react';
 
+const sun = require('@res/image/sun.png');
+const rain = require('@res/image/rain.png');
+const cloud = require('@res/image/cloud.png');
+const thunder = require('@res/image/thunder.png');
+
 export enum EmotionType {
   SUN = 'sun',
   RAIN = 'rain',
@@ -8,10 +13,10 @@ export enum EmotionType {
 }
 
 export const EmojiMapper = {
-  [EmotionType.SUN]: '☀',
-  [EmotionType.CLOUD]: '☁',
-  [EmotionType.RAIN]: '🌧',
-  [EmotionType.THUNDER]: '🌩',
+  [EmotionType.SUN]: sun,
+  [EmotionType.CLOUD]: cloud,
+  [EmotionType.RAIN]: rain,
+  [EmotionType.THUNDER]: thunder,
 };
 
 export interface Emotion {
@@ -19,7 +24,7 @@ export interface Emotion {
   emotion: EmotionType;
   emotionScope: boolean;
   date: string;
-  detailScope?: boolean;
+  detailScope: boolean;
 }
 
 export interface FeedEmotion extends Emotion {
@@ -27,6 +32,10 @@ export interface FeedEmotion extends Emotion {
   profilePhotoUrl: string | null;
   name: string;
   nickname: string;
+}
+
+export interface MyEmotion extends Emotion {
+  detail?: string;
 }
 
 export type CustomEvent = {

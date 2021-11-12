@@ -3,16 +3,18 @@ import styled from 'styled-components/native';
 
 import {User} from '@src/feature/profile/utils/profile.type';
 import ProfilePhoto from '@src/feature/profile/component/ProfilePhoto';
+import BlackButton from '@src/common/component/button/BlackButton';
+import {color} from '@src/common/utils/common.style';
 
 interface Props {
   friend: User;
   buttonText: string;
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 const Container = styled.View`
   width: 100%;
-  height: 80px;
+  height: 60px;
 
   display: flex;
   flex-direction: row;
@@ -20,30 +22,26 @@ const Container = styled.View`
   align-items: center;
 
   padding: 0px 20px;
+
+  border-bottom-width: 1.5px;
+  border-bottom-color: ${color.gray};
 `;
 
 const Profile = styled.View`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
 `;
 
 const Name = styled.Text`
   height: 100%;
   margin-left: 12px;
 
-  font-size: 20px;
+  color: ${color.black};
+  font-size: 24px;
+  line-height: 26px;
   text-align: center;
-`;
-
-const Button = styled.Button`
-  width: 40px;
-  height: 40px;
-
-  flex: 1;
-
-  background-color: #cfcfcf;
 `;
 
 const FriendListItem = ({friend, buttonText, onClick}: Props) => {
@@ -53,7 +51,12 @@ const FriendListItem = ({friend, buttonText, onClick}: Props) => {
         <ProfilePhoto photoUrl={friend.profilePhotoUrl} size={40} />
         <Name>{friend.name}</Name>
       </Profile>
-      <Button title={buttonText} onPress={onClick} />
+      <BlackButton
+        title={buttonText}
+        onClick={onClick}
+        width={'48px'}
+        height={'32px'}
+      />
     </Container>
   );
 };

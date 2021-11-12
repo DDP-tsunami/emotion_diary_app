@@ -4,11 +4,13 @@ import {EmojiMapper, EmotionType} from '../utils/emotion.type';
 
 interface Props {
   emoji: EmotionType;
-  isSelected: boolean;
-  onClick: () => void;
+  isSelected?: boolean;
+  onClick?: () => void;
+  size?: string;
 }
 interface ImageProps {
-  isSelected: boolean;
+  isSelected?: boolean;
+  size?: string;
 }
 
 const Container = styled.TouchableOpacity<ImageProps>`
@@ -23,17 +25,18 @@ const Container = styled.TouchableOpacity<ImageProps>`
 
   border-radius: 20px;
 `;
-const Emoji = styled.Text`
-  align-self: center;
+const Emoji = styled.Image<ImageProps>`
+  width: ${({size}) => (size ? size : '50px')};
+  height: ${({size}) => (size ? size : '50px')};
 
-  font-size: 50px;
-  text-align: center;
+  align-self: center;
+  resize-mode: contain;
 `;
 
-const EmotionItem = ({emoji, isSelected, onClick}: Props) => {
+const EmotionItem = ({emoji, isSelected, onClick, size}: Props) => {
   return (
     <Container onPress={onClick} isSelected={isSelected}>
-      <Emoji>{EmojiMapper[emoji]}</Emoji>
+      <Emoji source={EmojiMapper[emoji]} size={size} />
     </Container>
   );
 };

@@ -11,6 +11,7 @@ import FeedIcon from '../components/icons/FeedIcon';
 import AddIcon from '../components/icons/AddIcon';
 import FriendIcon from '../components/icons/FriendIcon';
 import AlarmIcon from '../components/icons/AlarmIcon';
+import {color} from '@src/common/utils/common.style';
 
 const TabView = createBottomTabNavigator();
 
@@ -20,7 +21,10 @@ const TabScreen = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: {position: 'absolute', height: 60},
+        tabBarStyle: {
+          borderBottomColor: color.black,
+          borderTopWidth: 1,
+        },
       }}>
       <TabView.Screen
         name="MyPage"

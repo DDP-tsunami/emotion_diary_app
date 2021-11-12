@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import {User} from '@src/feature/profile/utils/profile.type';
-import BasicButton from '@src/common/component/button/BasicButton';
 import {
   acceptFriendRequestAPI,
   refuseFriendRequestAPI,
 } from '@src/feature/friend/utils/friend.api';
+import BlackButton from '@src/common/component/button/BlackButton';
 
 interface Props {
   noticeId: string;
@@ -19,13 +19,18 @@ const Container = styled.View`
 
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+
+  margin-left: 12px;
 `;
 
 const Text = styled.Text`
-  font-size: 20px;
+  width: 65%;
+
+  font-family: Pretendard;
+  font-size: 16px;
 `;
 
 const ButtonSection = styled.View`
@@ -34,7 +39,7 @@ const ButtonSection = styled.View`
   flex: 1;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -50,10 +55,20 @@ const RequestAlarm = ({sender, noticeId, onDelete}: Props) => {
 
   return (
     <Container>
-      <Text>{`${sender.nickname}님이 친구요청을 보냈습니다.`}</Text>
+      <Text>{`${sender.nickname}님이\n팔로우를 요청했습니다.`}</Text>
       <ButtonSection>
-        <BasicButton title={'수락'} width={'40px'} onClick={onAccept} />
-        <BasicButton title={'거절'} width={'40px'} onClick={onRefuse} />
+        <BlackButton
+          title={'수락'}
+          width={'36px'}
+          height={'32px'}
+          onClick={onAccept}
+        />
+        <BlackButton
+          title={'거절'}
+          width={'36px'}
+          height={'32px'}
+          onClick={onRefuse}
+        />
       </ButtonSection>
     </Container>
   );

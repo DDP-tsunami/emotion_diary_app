@@ -2,7 +2,7 @@
 import BasicButton from '@src/common/component/button/BasicButton';
 import {color} from '@src/common/utils/common.style';
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import DetailEmotionModal from '../component/DetailEmotionModal';
 import FeedEmotionItem from '../component/FeedEmotionItem';
@@ -10,14 +10,15 @@ import {getFeedEmotions} from '../utils/emotion.api';
 import {FeedEmotion} from '../utils/emotion.type';
 
 const Container = styled.ScrollView`
-  width: 100%;
-  height: 100%;
-
+  flex: 1;
   display: flex;
   flex-direction: column;
 
+  padding: 0 0 0 0;
+
   background-color: ${color.white};
 `;
+const Text = styled.Text``;
 
 const FeedScreen = () => {
   const [emotions, setEmotions] = useState<FeedEmotion[]>([]);
@@ -46,14 +47,17 @@ const FeedScreen = () => {
 
   return (
     <Container>
-      <Text>친구들 감정 모아보기</Text>
+      <Text>Today's Weather</Text>
       {emotions.map(emotion => (
         <TouchableOpacity
           key={emotion.id}
           onPress={() => {
-            setSelectedEmotion(emotion);
-            setModalVisible(true);
-          }}>
+            if (emotion.detailScope) {
+              setSelectedEmotion(emotion);
+              setModalVisible(true);
+            }
+          }}
+          disabled={!emotion.detailScope}>
           <FeedEmotionItem emotion={emotion} />
         </TouchableOpacity>
       ))}

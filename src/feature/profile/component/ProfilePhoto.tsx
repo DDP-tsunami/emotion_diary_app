@@ -28,7 +28,7 @@ const Photo = styled.Image<StyleProps>`
 
   border-radius: ${props => (props.size ? `${props.size / 2}px` : '50px')};
   border-color: ${color.white};
-  border-width: 8px;
+  border-width: ${({size}) => (size ? `${size / 10}px` : '8px')};
 `;
 
 const ProfilePhoto = ({photoUrl, size}: Props) => {

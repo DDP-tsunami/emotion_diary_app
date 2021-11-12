@@ -7,6 +7,7 @@ import {Alarm, AlarmType} from '../utils/alarm.type';
 import RequestAlarm from './RequestAlarm';
 import FriendAlarm from './FriendAlarm';
 import ReactionAlarm from './ReactionAlarm';
+import {color} from '@src/common/utils/common.style';
 
 interface Props {
   alarm: Alarm;
@@ -22,13 +23,15 @@ const Container = styled.View<StyleProps>`
 
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
 
   padding: 0 20px;
   margin-bottom: 8px;
 
-  background-color: ${props => (props.status ? '#e1e1e1' : '#fdfdfd')};
+  background-color: ${color.white};
+  border-bottom-width: 2px;
+  border-bottom-color: ${color.violet};
 `;
 
 const AlarmItem = ({alarm, onDelete}: Props) => {

@@ -6,6 +6,7 @@ import FriendListItem from './FriendListItem';
 
 const Container = styled.View``;
 const Input = styled.TextInput``;
+const List = styled.View``;
 
 const FriendSearch = () => {
   const [searchId, setSearchId] = useState<string>('');
@@ -33,14 +34,16 @@ const FriendSearch = () => {
         onChangeText={onSearch}
         placeholder={'친구의 아이디를 검색해주세요.'}
       />
-      {searchedFriends.map(friend => (
-        <FriendListItem
-          key={friend.id}
-          friend={friend}
-          buttonText={'요청'}
-          onClick={() => onFriendRequest(friend.id)}
-        />
-      ))}
+      <List>
+        {searchedFriends.map(friend => (
+          <FriendListItem
+            key={friend.id}
+            friend={friend}
+            buttonText={'요청'}
+            onClick={() => onFriendRequest(friend.id)}
+          />
+        ))}
+      </List>
     </Container>
   );
 };
