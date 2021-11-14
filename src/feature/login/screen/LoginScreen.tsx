@@ -5,7 +5,7 @@ import LoginInput from '@src/common/component/input/LoginInput';
 import Logo from '@src/common/component/Logo';
 import {color} from '@src/common/utils/common.style';
 import {rootStackParams} from '@src/common/utils/common.types';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {loginAPI} from '../utils/login.api';
 
@@ -53,12 +53,6 @@ const LoginScreen = ({navigation}: Props) => {
   const onSignUp = () => {
     navigation.push('SignUp');
   };
-
-  useEffect(() => {
-    AsyncStorage.getItem('token').then(token => {
-      console.log(token);
-    });
-  }, []);
 
   return (
     <Container>

@@ -19,7 +19,7 @@ const Container = styled.View`
 const CalenderEventItem = ({emotion}: Props) => {
   return (
     <Container>
-      <EmotionItem emoji={emotion} size={'24px'} />
+      <EmotionItem emoji={emotion} size={'28px'} />
     </Container>
   );
 };

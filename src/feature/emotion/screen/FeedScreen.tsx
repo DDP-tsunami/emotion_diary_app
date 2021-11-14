@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import {useIsFocused} from '@react-navigation/core';
 import BasicButton from '@src/common/component/button/BasicButton';
 import {color} from '@src/common/utils/common.style';
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
 import DetailEmotionModal from '../component/DetailEmotionModal';
 import FeedEmotionItem from '../component/FeedEmotionItem';
@@ -14,13 +14,27 @@ const Container = styled.ScrollView`
   display: flex;
   flex-direction: column;
 
-  padding: 0 0 0 0;
+  padding: 16px;
 
   background-color: ${color.white};
 `;
-const Text = styled.Text``;
+const Text = styled.Text`
+  width: 100%;
+  height: 48px;
+
+  padding: 8px;
+
+  border-bottom-width: 2px;
+  border-bottom-color: ${color.black};
+
+  color: ${color.black};
+  font-family: 'Pretendard-Light';
+  font-size: 24px;
+`;
 
 const FeedScreen = () => {
+  const isFocused = useIsFocused();
+
   const [emotions, setEmotions] = useState<FeedEmotion[]>([]);
   const [totalCount, setTotalCount] = useState<number>(0);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -30,40 +44,39 @@ const FeedScreen = () => {
 
   const getEmotion = async () => {
     const {lines, totalCount: t} = await getFeedEmotions(0);
-    setEmotions([...emotions, ...lines]);
+    setEmotions([...lines]);
     setTotalCount(t);
   };
 
   useEffect(() => {
     getEmotion();
-  }, []);
+  }, [isFocused]);
 
   const onMoreFeed = async () => {
     const data = await getFeedEmotions(emotions.length);
-    console.log(data);
     setEmotions([...emotions, ...data.lines]);
     setTotalCount(data.totalCount);
+  };
+  const onEmotionClick = (emotion: FeedEmotion) => {
+    setSelectedEmotion(emotion);
+    setModalVisible(true);
   };
 
   return (
     <Container>
       <Text>Today's Weather</Text>
       {emotions.map(emotion => (
-        <TouchableOpacity
+        <FeedEmotionItem
           key={emotion.id}
-          onPress={() => {
-            if (emotion.detailScope) {
-              setSelectedEmotion(emotion);
-              setModalVisible(true);
-            }
+          emotion={emotion}
+          onClick={() => {
+            onEmotionClick(emotion);
           }}
-          disabled={!emotion.detailScope}>
-          <FeedEmotionItem emotion={emotion} />
-        </TouchableOpacity>
+        />
       ))}
-      {emotions.length < totalCount ? (
+      {emotions.length < totalCount && (
         <BasicButton title={'더 보기'} onClick={onMoreFeed} disabled={false} />
-      ) : null}
+      )}
       <DetailEmotionModal
         isVisible={modalVisible}
         onClose={() => setModalVisible(false)}

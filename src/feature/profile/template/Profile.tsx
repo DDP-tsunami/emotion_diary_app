@@ -23,9 +23,9 @@ const Container = styled.TouchableOpacity`
 const Name = styled.Text`
   margin-bottom: 4px;
 
+  font-family: 'Pretendard-Light';
   font-size: 20px;
-  font-weight: bold;
-  color: #000;
+  color: ${color.black};
 `;
 const Code = styled.Text`
   padding: 4px 8px 6px 8px;
@@ -37,6 +37,7 @@ const Code = styled.Text`
   text-align: center;
 
   font-size: 12px;
+  font-family: 'Pretendard-Light';
   font-weight: normal;
   color: ${color.black};
 `;

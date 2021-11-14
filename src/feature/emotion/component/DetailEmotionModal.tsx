@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {StyleProp, View, Text, ViewStyle, TextStyle} from 'react-native';
 import Modal from 'react-native-modal';
@@ -58,6 +59,7 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
     marginLeft: 12,
 
     fontSize: 24,
+    fontFamily: 'Pretendard-Light',
     color: color.black,
     lineHeight: 30,
   },
@@ -97,10 +99,12 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
   },
   year: {
     fontSize: 24,
+    fontFamily: 'Pretendard-Light',
     color: color.black,
   },
   month: {
     color: color.black,
+    fontFamily: 'Pretendard-Light',
     fontSize: 32,
     fontWeight: 'bold',
     lineHeight: 44,
@@ -112,6 +116,7 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
     padding: 4,
 
     color: color.black,
+    fontFamily: 'Pretendard-Light',
     fontSize: 32,
   },
 };
@@ -119,13 +124,20 @@ const style: {[key: string]: StyleProp<ViewStyle | TextStyle>} = {
 const DetailEmotionModal = ({isVisible, onClose, emotion}: Props) => {
   const [detail, setDetail] = useState('');
 
-  useEffect(() => {
-    if (emotion) {
-      getEmotionDetailAPI(emotion.id).then(d => {
-        setDetail(d);
-      });
+  const getEmotionDetail = async () => {
+    try {
+      if (emotion) {
+        const result = await getEmotionDetailAPI(emotion.id);
+        setDetail(result);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  });
+  };
+
+  useEffect(() => {
+    getEmotionDetail();
+  }, [emotion]);
 
   return (
     emotion && (

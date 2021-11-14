@@ -1,9 +1,14 @@
 import makeRequest from '@src/common/function/makeRequest';
 import {User} from './profile.type';
 
-export const getProfileDataAPI = async (): Promise<User> => {
-  const data: User = await makeRequest({url: '/user', method: 'GET'});
-  return data;
+export const getProfileDataAPI = async (): Promise<User | null> => {
+  try {
+    const data: User = await makeRequest({url: '/user', method: 'GET'});
+    return data;
+  } catch (error) {
+    console.log('Erro : ', error);
+    return null;
+  }
 };
 
 export const updateProfileAPI = async (

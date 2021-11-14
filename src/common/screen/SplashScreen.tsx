@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import {useIsFocused} from '@react-navigation/core';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
 import {getUserInfoAPI} from '@src/feature/profile/utils/profile.api';
@@ -7,6 +8,8 @@ import styled from 'styled-components/native';
 import {color} from '../utils/common.style';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Splash'>;
+
+const Logo = require('@res/image/logo_brown.png');
 
 const Container = styled.View`
   width: 100%;
@@ -20,10 +23,22 @@ const Container = styled.View`
 `;
 
 const Text = styled.Text`
-  color: #fff;
+  color: ${color.black};
+  font-family: 'Pretendard-Light';
+  font-size: 32px;
+  font-weight: 100;
+`;
+const Image = styled.Image`
+  width: 40px;
+  height: 40px;
+
+  margin-bottom: 20px;
+
+  resize-mode: contain;
 `;
 
 const SplashScreen = ({navigation}: Props) => {
+  const isFocused = useIsFocused();
   const onSplash = async () => {
     const result = await getUserInfoAPI();
     if (result) {
@@ -33,12 +48,15 @@ const SplashScreen = ({navigation}: Props) => {
     }
   };
   useEffect(() => {
-    setTimeout(onSplash, 3000);
-  }, []);
+    if (isFocused) {
+      setTimeout(onSplash, 3000);
+    }
+  }, [isFocused]);
 
   return (
     <Container>
-      <Text>Splash 화면 입니다.</Text>
+      <Image source={Logo} />
+      <Text>{'오\n늘\n일\n기'}</Text>
     </Container>
   );
 };

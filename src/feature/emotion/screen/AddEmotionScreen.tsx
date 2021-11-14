@@ -5,6 +5,7 @@ import BasixCheckBox from '@src/common/component/checkbox/BasicCheckBox';
 import {color} from '@src/common/utils/common.style';
 import {rootStackParams} from '@src/common/utils/common.types';
 import React, {useEffect, useState} from 'react';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import styled from 'styled-components/native';
 import EmotionPicker from '../component/EmotionPicker';
 import {
@@ -16,10 +17,21 @@ import {EmotionType, MyEmotion} from '../utils/emotion.type';
 
 type Props = NativeStackScreenProps<rootStackParams, 'Main'>;
 
+const Wrapper = styled(KeyboardAwareScrollView)`
+  width: 100%;
+  height: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  background-color: ${color.white};
+`;
 const Container = styled.View`
   width: 100%;
   height: 100%;
 
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -43,9 +55,8 @@ const Header = styled.View`
 const Title = styled.Text`
   width: 100%;
 
-  font-family: 'Pretendard-Black';
+  font-family: 'Pretendard-Light';
   font-size: 32px;
-  font-weight: bold;
 
   margin-bottom: 16px;
 `;
@@ -63,10 +74,10 @@ const Input = styled.TextInput`
 
   background-color: ${color.white};
 
-  border-top-color: ${color.black};
-  border-top-width: 4px;
   border-bottom-color: ${color.background};
   border-bottom-width: 4px;
+
+  font-family: 'Pretendard-Light';
 `;
 
 const CheckBoxSection = styled.View`
@@ -84,7 +95,23 @@ const CheckBoxSection = styled.View`
   border-top-width: 4px;
 `;
 
+const Text = styled.Text`
+  width: 100%;
+  height: 48px;
+
+  padding: 8px;
+
+  border-bottom-width: 2px;
+  border-bottom-color: ${color.black};
+
+  color: ${color.black};
+  font-family: 'Pretendard-Light';
+  font-size: 24px;
+
+  margin-bottom: 8px;
+`;
 const Label = styled.Text`
+  font-family: 'Pretendard-Light';
   font-size: 20px;
   line-height: 24px;
   font-weight: 900;
@@ -151,38 +178,40 @@ const AddEmotionScreen = ({navigation}: Props) => {
   }, [isFocused]);
 
   return (
-    <Container>
-      <Header>
-        <BlackButton
-          onClick={onSubmit}
-          title={'등록'}
-          width={'50px'}
-          height={'30px'}
-          disabled={emotion === null}
-        />
-      </Header>
-      <Title>{'오늘의\n감정날씨는\n어땠나요?'}</Title>
-      <EmotionPicker emotion={emotion} onEmotionClick={setEmotion} />
-      <Title>코멘트</Title>
-      <Input value={detail} onChangeText={setDetail} numberOfLines={8} />
-      <CheckBoxSection>
-        <Label>공개 설정</Label>
-        <BasixCheckBox
-          checked={emotionScope}
-          onChange={checked => {
-            setEmotionScope(checked);
-          }}
-          label={'감정 공개'}
-        />
-        <BasixCheckBox
-          checked={detailScope}
-          onChange={checked => {
-            setDetailScope(checked);
-          }}
-          label={'일기 공개'}
-        />
-      </CheckBoxSection>
-    </Container>
+    <Wrapper>
+      <Container>
+        <Header>
+          <BlackButton
+            onClick={onSubmit}
+            title={'등록'}
+            width={'50px'}
+            height={'30px'}
+            disabled={emotion === null}
+          />
+        </Header>
+        <Title>{'오늘의\n감정날씨는\n어땠나요?'}</Title>
+        <EmotionPicker emotion={emotion} onEmotionClick={setEmotion} />
+        <Text>코멘트</Text>
+        <Input value={detail} onChangeText={setDetail} numberOfLines={8} />
+        <CheckBoxSection>
+          <Label>공개 설정</Label>
+          <BasixCheckBox
+            checked={emotionScope}
+            onChange={checked => {
+              setEmotionScope(checked);
+            }}
+            label={'감정 공개'}
+          />
+          <BasixCheckBox
+            checked={detailScope}
+            onChange={checked => {
+              setDetailScope(checked);
+            }}
+            label={'일기 공개'}
+          />
+        </CheckBoxSection>
+      </Container>
+    </Wrapper>
   );
 };
 

@@ -28,8 +28,9 @@ const Text = styled.Text`
   border-bottom-color: ${color.black};
 
   color: ${color.black};
-  font-size: 28px;
-  line-height: 56px;
+  font-family: 'Pretendard-Light';
+  font-size: 24px;
+  line-height: 48px;
 `;
 
 const AlarmListScreen = () => {

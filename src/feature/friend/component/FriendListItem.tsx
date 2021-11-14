@@ -36,10 +36,11 @@ const Profile = styled.View`
 
 const Name = styled.Text`
   height: 100%;
-  margin-left: 12px;
+  margin-left: 16px;
 
   color: ${color.black};
-  font-size: 24px;
+  font-family: 'Pretendard-Light';
+  font-size: 20px;
   line-height: 26px;
   text-align: center;
 `;

@@ -21,28 +21,28 @@ const Button = styled.TouchableOpacity`
 
 const FriendAlarmList = ({isFocus}: Props) => {
   const [friendAlarmList, setFriendAlarmList] = useState<Alarm[]>([]);
-  const [start, setStart] = useState<number>(0);
   const [totalCount, setTotalCount] = useState<number>(0);
 
   const getAlarmList = async () => {
-    const result = await getFriendNoticeListAPI(start);
+    const result = await getFriendNoticeListAPI(0);
+
+    setFriendAlarmList([...result.notices]);
+    setTotalCount(result.totalCount);
+  };
+  const getMoreAlarmList = async () => {
+    const result = await getFriendNoticeListAPI(friendAlarmList.length);
 
     setFriendAlarmList([...friendAlarmList, ...result.notices]);
     setTotalCount(result.totalCount);
   };
   const onDelete = (noticeId: string) => {
     setFriendAlarmList(friendAlarmList.filter(alarm => alarm.id !== noticeId));
-    setStart(start - 1);
     setTotalCount(totalCount - 1);
   };
 
   useEffect(() => {
     getAlarmList();
   }, [isFocus]);
-
-  useEffect(() => {
-    setStart(friendAlarmList.length);
-  }, [friendAlarmList]);
 
   return (
     <Container>
@@ -53,8 +53,8 @@ const FriendAlarmList = ({isFocus}: Props) => {
           onDelete={() => onDelete(alarm.id)}
         />
       ))}
-      {start < totalCount && (
-        <Button onPress={getAlarmList}>
+      {friendAlarmList.length < totalCount && (
+        <Button onPress={getMoreAlarmList}>
           <Text>더 보기 ▽</Text>
         </Button>
       )}

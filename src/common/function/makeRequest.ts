@@ -13,7 +13,6 @@ export default async function makeRequest(config: AxiosRequestConfig) {
     const {data} = await axios(requestConfiguration);
     return data;
   } catch (error: any | Error) {
-    console.log('Error : ', error);
     return null;
   }
 }

@@ -11,7 +11,7 @@ const Container = styled.Text`
 
   margin-left: 12px;
 
-  font-family: Pretendard;
+  font-family: 'Pretendard-Light';
   font-size: 16px;
 `;
 

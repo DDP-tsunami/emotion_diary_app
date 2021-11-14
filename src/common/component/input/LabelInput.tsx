@@ -23,6 +23,8 @@ const Label = styled.Text`
   min-width: 40px;
 
   margin-right: 20px;
+
+  font-family: 'Pretendard-Light';
 `;
 const MyInput = styled.TextInput``;
 

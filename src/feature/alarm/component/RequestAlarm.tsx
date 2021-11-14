@@ -29,7 +29,7 @@ const Container = styled.View`
 const Text = styled.Text`
   width: 65%;
 
-  font-family: Pretendard;
+  font-family: 'Pretendard-Light';
   font-size: 16px;
 `;
 

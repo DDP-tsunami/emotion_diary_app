@@ -15,7 +15,7 @@ export const loginAPI = async (
     );
     return data.token;
   } catch (error) {
-    console.log(error);
+    console.log('Login Error : ', error);
     return null;
   }
 };

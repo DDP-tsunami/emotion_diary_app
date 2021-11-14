@@ -75,7 +75,7 @@ const ImageModifyButton = styled.TouchableOpacity`
 `;
 
 const Text = styled.Text`
-  font-weight: bold;
+  font-family: 'Pretendard-Light';
 `;
 
 const InputSection = styled.View`

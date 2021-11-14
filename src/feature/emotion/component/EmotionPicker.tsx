@@ -2,7 +2,7 @@ import {color} from '@src/common/utils/common.style';
 import React from 'react';
 import styled from 'styled-components/native';
 import {EmotionType} from '../utils/emotion.type';
-import EmotionItem from './EmotionItem';
+import TouchableEmotionItem from './TouchableEmotionItem';
 
 interface Props {
   emotion: EmotionType | null;
@@ -38,7 +38,7 @@ const EmotionPicker = ({emotion, onEmotionClick}: Props) => {
   return (
     <Container>
       {EmotionArray.map(emo => (
-        <EmotionItem
+        <TouchableEmotionItem
           key={emo}
           isSelected={emotion === emo}
           emoji={emo}

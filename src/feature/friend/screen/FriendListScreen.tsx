@@ -16,17 +16,17 @@ const Container = styled.ScrollView`
 
 const Title = styled.Text`
   width: 100%;
-  height: 64px;
+  height: 48px;
 
   padding: 8px 12px;
   margin-bottom: 8px;
 
-  border-bottom-width: 3px;
+  border-bottom-width: 1px;
   border-bottom-color: ${color.black};
 
   color: ${color.black};
-  font-size: 36px;
-  font-weight: bold;
+  font-family: 'Pretendard-Light';
+  font-size: 24px;
 `;
 
 const FriendListScreen = () => {

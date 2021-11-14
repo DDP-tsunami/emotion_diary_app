@@ -1,10 +1,10 @@
+import {color} from '@src/common/utils/common.style';
 import React from 'react';
 import styled from 'styled-components/native';
 import ProfilePhoto from '../component/ProfilePhoto';
 
 interface Props {
   nickname: string;
-  name: string;
   profilePhotoUrl: string | null;
 }
 
@@ -33,24 +33,18 @@ const Content = styled.View`
 `;
 
 const Nickname = styled.Text`
-  margin-bottom: 4px;
-
+  color: ${color.black};
+  font-family: 'Pretendard-Light';
   font-size: 16px;
-  font-weight: bold;
+  line-height: 18px;
 `;
 
-const Name = styled.Text`
-  font-size: 12px;
-  font-weight: normal;
-`;
-
-const SmallProfile = ({nickname, name, profilePhotoUrl}: Props) => {
+const SmallProfile = ({nickname, profilePhotoUrl}: Props) => {
   return (
     <Container>
       <ProfilePhoto photoUrl={profilePhotoUrl} size={32} />
       <Content>
         <Nickname>{nickname}</Nickname>
-        <Name>{name}</Name>
       </Content>
     </Container>
   );

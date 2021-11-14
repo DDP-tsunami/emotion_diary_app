@@ -27,7 +27,6 @@ export const getFeedEmotions = async (
     url: `/emotion/feed?start=${start}`,
     method: 'GET',
   });
-  console.log('Get Feed Emotion : ', data);
   return data;
 };
 

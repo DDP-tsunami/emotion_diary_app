@@ -17,10 +17,11 @@ const Input = styled.TextInput<ImageProps>`
   width: ${props => (props.width ? props.width : '60%')};
 
   border-bottom-color: ${color.black};
-  border-bottom-width: 4px;
+  border-bottom-width: 2px;
 
-  font-size: 20px;
   color: ${color.black};
+  font-family: 'Pretendard-Light';
+  font-size: 20px;
 
   margin-bottom: 12px;
 `;

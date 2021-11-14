@@ -22,7 +22,7 @@ const Container = styled.View`
 `;
 
 const Label = styled.Text`
-  font-family: 'Pretendard-Black';
+  font-family: 'Pretendard-Light';
   font-size: 16px;
   font-weight: bold;
   line-height: 22px;

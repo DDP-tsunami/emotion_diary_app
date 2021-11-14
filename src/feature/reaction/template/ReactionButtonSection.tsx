@@ -22,6 +22,8 @@ const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  padding: 8px 4px;
 `;
 
 const ReactionButtonSection = ({memoId, memberId}: Props) => {

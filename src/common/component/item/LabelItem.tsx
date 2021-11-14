@@ -20,6 +20,8 @@ const Label = styled.Text`
   min-width: 40px;
 
   margin-right: 20px;
+
+  font-family: 'Pretendard-Light';
 `;
 const Item = styled.Text`
   display: flex;
@@ -34,6 +36,7 @@ const Item = styled.Text`
   background-color: ${color.gray};
 
   line-height: 22px;
+  font-family: 'Pretendard-Light';
 `;
 
 const LabelItem = ({label, value}: Props) => {

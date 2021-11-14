@@ -33,7 +33,7 @@ const Container = styled.TouchableOpacity<StyleProps>`
   background-color: ${props => (props.disable ? color.disabled : color.beige)};
 `;
 const Content = styled.Text`
-  font-family: 'Pretendard-Black';
+  font-family: 'Pretendard-Light';
   font-weight: bold;
   color: ${color.black};
 `;

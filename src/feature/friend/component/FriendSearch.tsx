@@ -4,8 +4,12 @@ import styled from 'styled-components/native';
 import {requestFriendAPI, searchFriendEmail} from '../utils/friend.api';
 import FriendListItem from './FriendListItem';
 
-const Container = styled.View``;
-const Input = styled.TextInput``;
+const Container = styled.View`
+  margin-bottom: 12px;
+`;
+const Input = styled.TextInput`
+  font-family: 'Pretendard-Light';
+`;
 const List = styled.View``;
 
 const FriendSearch = () => {

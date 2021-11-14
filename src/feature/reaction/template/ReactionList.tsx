@@ -12,10 +12,10 @@ interface Props {
 
 const Container = styled.ScrollView`
   width: 100%;
-  height: 30%;
+  height: 120px;
 
   display: flex;
-  flex-direction: column; ;
+  flex-direction: column;
 `;
 
 const ReactionList = ({memoId}: Props) => {
@@ -30,7 +30,6 @@ const ReactionList = ({memoId}: Props) => {
   >([]);
   const getReactionList = async () => {
     const result = await getReactionListAPI(memoId);
-    console.log(result);
     setReactionList(result);
   };
 
@@ -41,10 +40,9 @@ const ReactionList = ({memoId}: Props) => {
   return (
     <Container>
       <Text>반응들</Text>
-      {reactionList.map(({id, name, nickname, photoUrl, reaction}) => (
+      {reactionList.map(({id, nickname, photoUrl, reaction}) => (
         <ReactionItem
           key={id}
-          name={name}
           nickname={nickname}
           photoUrl={photoUrl}
           reaction={reaction}

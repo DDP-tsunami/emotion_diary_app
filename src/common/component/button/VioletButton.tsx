@@ -31,7 +31,7 @@ const Container = styled.TouchableOpacity<ImageProps>`
 `;
 
 const Text = styled.Text<ImageProps>`
-  font-family: 'Pretendard-Black';
+  font-family: 'Pretendard-Light';
   font-size: 12px;
   color: ${({isDisabled}) => (isDisabled ? color.disabled : color.black)};
 `;
