@@ -1,14 +1,20 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {rootStackParams} from '@src/common/utils/common.types';
 import BasicButton from '@src/common/component/button/BasicButton';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {signUpAPI} from '../utils/login.api';
+import {
+  checkEmailDuplicationAPI,
+  checkIdDuplicationAPI,
+  signUpAPI,
+} from '../utils/login.api';
 import {color} from '@src/common/utils/common.style';
 import LoginInput from '@src/common/component/input/LoginInput';
 import Logo from '@src/common/component/Logo';
+import LoginInputWithError from '@src/common/component/input/LoginInputWithError';
 
 type Props = NativeStackScreenProps<rootStackParams, 'SignUp'>;
 
@@ -60,6 +66,9 @@ const SignUpScreen = ({navigation}: Props) => {
   const [pw, setPw] = useState('');
   const [pwCheck, setPwCheck] = useState('');
 
+  const [idExistence, setIdExistence] = useState<boolean>(false);
+  const [emailExistence, setEmailExistence] = useState<boolean>(false);
+
   const onSignUp = async () => {
     if (pw === pwCheck) {
       await signUpAPI(id, nickname, name, email, pw);
@@ -67,16 +76,40 @@ const SignUpScreen = ({navigation}: Props) => {
     navigation.push('Login');
   };
 
+  const onGetIdExistence = async () => {
+    const result = await checkIdDuplicationAPI(id);
+    setIdExistence(result);
+  };
+
+  const onGetEmailExistence = async () => {
+    const result = await checkEmailDuplicationAPI(email);
+    setEmailExistence(result);
+  };
+  useEffect(() => {
+    onGetIdExistence();
+  }, [id]);
+  useEffect(() => {
+    onGetEmailExistence();
+  }, [email]);
+
   return (
     <Wrapper>
       <Container>
         <Logo size={'80px'} />
         <InputSection>
-          <LoginInput value={id} onChange={setId} placeholder={'아이디'} />
-          <LoginInput
+          <LoginInputWithError
+            value={id}
+            onChange={setId}
+            placeholder={'아이디'}
+            error={idExistence}
+            errorMessage={'중복된 아이디입니다.'}
+          />
+          <LoginInputWithError
             value={email}
             onChange={setEmail}
             placeholder={'이메일'}
+            error={emailExistence}
+            errorMessage={'중복된 이메일입니다.'}
           />
           <NameSection>
             <LoginInput
@@ -103,7 +136,15 @@ const SignUpScreen = ({navigation}: Props) => {
           title={'회원가입'}
           width={'60%'}
           height={'44px'}
-          disabled={pw !== pwCheck}
+          disabled={
+            id.length === 0 ||
+            nickname.length === 0 ||
+            name.length === 0 ||
+            email.length === 0 ||
+            pw !== pwCheck ||
+            idExistence ||
+            emailExistence
+          }
           onClick={onSignUp}
         />
       </Container>

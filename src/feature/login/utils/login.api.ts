@@ -39,3 +39,31 @@ export const signUpAPI = async (
     console.log('Sign Up API Error : ', error);
   }
 };
+
+export const checkIdDuplicationAPI = async (
+  userId: string,
+): Promise<boolean> => {
+  try {
+    const {data: result} = await axios.get(
+      `${baseURL}/user/existence/userId?userId=${userId}`,
+    );
+    return result.exist;
+  } catch (error) {
+    console.log('Check Id Error : ', error);
+    return true;
+  }
+};
+
+export const checkEmailDuplicationAPI = async (
+  email: string,
+): Promise<boolean> => {
+  try {
+    const {data: result} = await axios.get(
+      `${baseURL}/user/existence/email?email=${email}`,
+    );
+    return result.exist;
+  } catch (error) {
+    console.log('Check Id Error : ', error);
+    return true;
+  }
+};
