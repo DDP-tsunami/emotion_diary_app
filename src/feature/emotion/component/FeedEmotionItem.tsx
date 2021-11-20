@@ -56,6 +56,7 @@ const FeedEmotionItem = ({emotion, onClick}: Props) => {
       <EmotionSection>
         <TouchableEmotionItem
           emoji={emotion.emotion}
+          disabled={!emotion.detailScope}
           size={'100px'}
           onClick={onClick}
         />

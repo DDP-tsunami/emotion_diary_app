@@ -4,6 +4,7 @@ import {EmojiMapper, EmotionType} from '../utils/emotion.type';
 
 interface Props {
   emoji: EmotionType;
+  disabled?: boolean;
   isSelected?: boolean;
   onClick?: () => void;
   size?: string;
@@ -33,9 +34,15 @@ const Emoji = styled.Image<ImageProps>`
   resize-mode: contain;
 `;
 
-const TouchableEmotionItem = ({emoji, isSelected, onClick, size}: Props) => {
+const TouchableEmotionItem = ({
+  emoji,
+  isSelected,
+  onClick,
+  size,
+  disabled,
+}: Props) => {
   return (
-    <Container onPress={onClick} isSelected={isSelected}>
+    <Container onPress={onClick} isSelected={isSelected} disabled={disabled}>
       <Emoji source={EmojiMapper[emoji]} size={size} />
     </Container>
   );
